@@ -23,7 +23,11 @@
 
 @media screen and (max-width: 1600px)
   .land
-    padding-left: 30px
+    padding-left: 70px
+    &__pers
+      margin-left: -90px
+    &__info
+      transform: scale(.85)
     &__logo
       max-width: 380px
     &__legal
@@ -32,15 +36,34 @@
 @media screen and (max-width: 1600px) and (max-height: 820px)
   .land
     &__info
-      transform: scale(.83)
+      transform: scale(.79)
 
+@media screen and (max-width: 1600px) and (max-height: 770px)
+  .land
+    &__info
+      transform: scale(.77)
+    &__pers
+      margin: 0 40px 0 -90px
 
-@media screen and (max-width: 1550px) and (max-height: 770px)
+@media screen and (max-width: 1550px) and (min-height: 800px)
+  .land
+    &__info
+      transform: scale(.82)
+    &__pers
+      min-width: 690px
+      margin-left: -100px
+
+@media screen and (max-width: 1550px) and (max-height: 800px)
   .land
     padding-top: 60px
     height: calc(100% - 80px)
+    &__info
+      transform: scale(.74)
+    &__pers
+      margin-left: -130px
     &__logo
       max-width: 350px
+
   .footer
     height: 80px
 
@@ -61,7 +84,7 @@
     &__info
       transform-origin: left center
     &__pers
-      margin-left: -200px
+      margin-left: -300px
 
 @media screen and (max-width: 1380px) and (min-height: 900px)
   .land
@@ -70,7 +93,10 @@
       margin-left: -300px
 
 
-
+@media screen and (max-width: 1368px) and (max-height: 740px)
+  .land
+    &__info
+      transform: scale(.65)
 
 @media screen and (max-width: 1368px) and (max-height: 710px)
   .land
@@ -80,7 +106,7 @@
 @media screen and (max-width: 1368px) and (max-height: 675px)
   .land
     &__info
-      transform: scale(.69)
+      transform: scale(.61)
 
 
 @media screen and (max-width: 1300px)
@@ -90,19 +116,27 @@
     &__logo
       max-width: 340px
 
+@media screen and (max-width: 1300px) and (max-height: 720px)
+  .land
+    &__info
+      transform: scale(.7)
 
-@media screen and (max-width: 1300px) and (max-height: 650px)
+@media screen and (max-width: 1300px) and (max-height: 680px)
   .land
     height: calc(100% - 70px)
     &__info
-      transform: scale(.63)
+      transform: scale(.61)
   .footer
     height: 70px
 
 @media screen and (max-width: 1300px) and (max-height: 600px)
   .land
+    &__info
+      transform: scale(.58)
     &__logo
       max-width: 280px
+    &__pers
+      margin-right: 70px
     &__legal
       max-width: 170px
 
@@ -113,27 +147,39 @@
     &__info
       transform: scale(.68)
 
-
-@media screen and (max-width: 1150px) and (min-height: 750px)
+@media screen and (max-width: 1220px) and (max-height: 780px)
   .land
     &__pers
       margin-left: -400px
     &__info
-      transform: scale(.6)
+      transform: scale(.62)
+
+@media screen and (max-width: 1220px) and (max-height: 600px)
+  .land
+    &__info
+      transform: scale(.58)
+
+
+@media screen and (max-width: 1150px) and (min-height: 750px)
+  .land
+    &__pers
+      margin-left: -490px
+    &__info
+      transform: scale(.55)
 
 @media screen and (max-width: 1150px) and (max-height: 720px)
   .land
     &__pers
       margin-left: -400px
     &__info
-      transform: scale(.6)
+      transform: scale(.57)
 
 @media screen and (max-width: 1080px) and (max-height: 768px) and (orientation: landscape)
   .land
     &__info
-      transform: scale(.6)
+      transform: scale(.55)
     &__pers
-      margin-left: -420px
+      margin-left: -500px
     &__logo
       max-width: 285px
     &__offer
@@ -279,6 +325,12 @@
   .land
     &__legal
       max-width: 250px
+
+@media screen and (min-width: 810px) and (max-height: 980px) and (orientation: portrait)
+  .land
+    padding-top: 100px
+    &__info
+      transform: scale(.9)
 
 @media screen and (max-width: 768px) and (orientation: portrait) and (max-height: 990px)
   .land
@@ -588,7 +640,7 @@
   .land
     justify-content: space-between
     height: calc(100% - 50px)
-    padding: 45px 0 0 0
+    padding: 45px 0 0 30px
     &__pers
       min-width: 360px
       margin: 0 0 -80px 0
@@ -613,10 +665,10 @@
           width: 32px
           height: 26px
       &-btn
-        min-width: 325px
+        min-width: 275px
         //margin-top: auto
-        padding: 19px 40px 17px
-        font-size: 20px
+        padding: 17px 30px 15px
+        font-size: 17px
         text-shadow: none
     &__legal
       max-width: 120px
@@ -627,6 +679,9 @@
     &__item
       &-text
         font-size: 12px
+      &-icon
+        max-width: 30px
+        min-width: 30px
 
 @media screen and (max-width: 750px) and (min-height: 500px) and (orientation: landscape)
   .land
@@ -729,6 +784,8 @@
     &__pers
       min-width: 290px
       margin: 0 30px -80px 20px
+    &__logo
+      max-width: 180px
 
 @media screen and (max-width: 750px) and (max-height: 350px) and (orientation: landscape)
   .land
@@ -757,6 +814,7 @@
       min-width: 230px
       margin: 0 20px -60px 0px
 
+
 @media screen and (max-width: 950px) and (max-height: 305px) and (orientation: landscape)
   .land
     &__info
@@ -765,14 +823,28 @@
     &__pers
       margin-bottom: -100px
 
+@media screen and (max-width: 950px) and (max-height: 300px) and (orientation: landscape)
+  .land
+    &__info
+      transform: scale(.6)
+      margin-top: -30px
+    &__legal
+      bottom: 0
+    &__pers
+      min-width: 270px
+
+
 /************************FOLD
 
 @media screen and (max-width: 860px) and (min-width: 640px) and (max-height: 700px) and (min-height: 640px) and (orientation: landscape)
   .land
+    padding-left: 30px
     &__info
       transform: scale(.45)
+      margin-left: 0
     &__pers
-      min-width: 600px
+      min-width: 720px
+      margin: 0 -100px 0 -650px
 
 
 @media screen and (max-width: 700px) and (min-width: 640px) and (max-height: 860px) and (min-height: 640px) and (orientation: portrait)
@@ -801,11 +873,22 @@
 
 @media screen and (max-width: 860px) and (min-width: 740px) and (max-height: 600px) and (min-height: 520px) and (orientation: landscape)
   .land
+    padding-left: 40px
     &__info
       padding: 0
       margin: auto 0 auto 0
 
     &__pers
       min-width: 600px
-      margin: 0 0 0 -40px
+      margin: 0 0 0 -80px
 
+
+@media screen and (max-width: 710px) and (min-width: 690px) and (max-height: 670px) and (min-height: 640px) and (orientation: landscape)
+  .land
+    padding-left: 20px
+    &__info
+      transform: scale(.38)
+    &__pers
+      margin-left: -680px
+    &__legal
+      max-width: 200px
