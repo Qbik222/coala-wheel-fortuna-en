@@ -24,7 +24,7 @@
         var link,
             parent = e.target.closest('a');
 
-        if (parent.getAttribute('href') !== 'https://tds.favbet.ro') {
+        if (parent.getAttribute('href') !== 'https://tds.favbet.partners') {
             return;
         }
 
