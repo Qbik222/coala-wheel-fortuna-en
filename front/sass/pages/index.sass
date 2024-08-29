@@ -25,12 +25,12 @@ body
 .land
   height: calc(100% - 100px)
   position: relative
-  padding: 95px 0 0 30px
+  padding: 95px 0 0 60px
   display: flex
   overflow: hidden
   pointer-events: none
   z-index: 10
-  justify-content: center
+  justify-content: space-between
   background: url("../img/bg-desc.jpg") no-repeat 100% 90%/cover
   @media screen and (max-width: 1280px) and (orientation: portrait)
     background: url("../img/bg-tab.jpg") no-repeat 100% 100%/cover
@@ -67,6 +67,7 @@ body
     align-items: center
     justify-content: center
     min-width: 890px
+    transform-origin: left center
     //transform: scale(1.2)
     &-title
       text-align: center
