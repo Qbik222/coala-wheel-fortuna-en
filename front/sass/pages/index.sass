@@ -31,6 +31,7 @@ body
   pointer-events: none
   z-index: 10
   justify-content: space-between
+  animation: scaleBg 1.6s ease
   background: url("../img/bg-desc.jpg") no-repeat 100% 90%/cover
   @media screen and (max-width: 1280px) and (orientation: portrait)
     background: url("../img/bg-tab.jpg") no-repeat 100% 100%/cover
@@ -127,6 +128,7 @@ body
     max-width: 84vh
     margin-top: -85px
     display: flex
+    animation: slideInFromRight 1s ease-out
     picture
       align-self: flex-end
       margin-bottom: -10px
@@ -174,3 +176,15 @@ body
     transform: scale(1)
   50%
     transform: scale(1.05)
+
+@keyframes slideInFromRight
+  0%
+    transform: translateX(60%)
+  100%
+    transform: translateX(0%)
+
+@keyframes scaleBg
+  0%
+    background-size: 150% auto
+  100%
+    background-size: 100% auto
