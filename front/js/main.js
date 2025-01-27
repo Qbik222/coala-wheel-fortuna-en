@@ -195,4 +195,9 @@ document.addEventListener("DOMContentLoaded", () =>{
             }
         });
     });
+
+    firstSpin(wheelSections, document.querySelector(".popup99"), wheelWrap, wheelArrow, "fs99", spinBg, salut)
+
+
 })
+
