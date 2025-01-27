@@ -44,13 +44,14 @@
                 .progress__bar-thumb
                     .progress__bar-wrap
                         .progress__bar-line
-                            .progress__bar-status 1000 ₴
-                    .progress__bar-sum #[span.current 1000] / #[span.total 2000 ₴]
+                            .progress__bar-status 500 ₴
+                    .progress__bar-sum #[span.current 500] / #[span.total 1000 ₴]
+                    .progress__bar-data #[span(data-translate="lastUpdate") Last update:]  #[span.current-data]
             a(href="#").progress__top-right #[span(data-translate="btnSportBet")   bet on <br> sports]
         .progress__bottom
             .progress__bottom-wrap
                 .progress__bottom-title(data-translate="progressBottomTitle") 1 day — 1 attempt
-                .progress__bottom-text(data-translate="progressBottomText") Make a total turnover of winning bets of 2 000₴ and get a spin on the “Sam’s Wheel”.
+                .progress__bottom-text(data-translate="progressBottomText") Make a total turnover of winning bets of 1 000₴ and get a spin on the “Sam’s Wheel”.
     .days
         .days__title(data-translate="daysTitle")  Challenge from Sam Spin 7 day in a row
         .days__wrap
@@ -185,9 +186,9 @@
                 .popup__buble-text(data-translate="popupEcoflowText") Energy independence is your middle name.
             .popup__buble._bonus
                 .popup__buble-text(data-translate="popupBonusText") Fortune is on your side! <br> Enjoy this awesome bonus.
-            .popup__buble._merch
-                .popup__buble-title(data-translate="popupMerchTitle") Pssst
-                .popup__buble-text(data-translate="popupMerchText") how about a special gift <br> from me?
+            .popup__buble._fs99
+                .popup__buble-title(data-translate="popupFs99Title") Pssst
+                .popup__buble-text(data-translate="popupFs99Text") how about a special gift <br> from me?
             .popup__buble._nothing
                 .popup__buble-title(data-translate="popupNothingTitle") No prizes today.
                 .popup__buble-text(data-translate="popupNothingText") Well, what can you do? Fortune has turned the other way.
@@ -201,15 +202,15 @@
                 picture._bonus
                     source(srcset="./img/popups/bonus/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
                     img(src="./img/popups/bonus/pers.png" alt="sam favbet")
-                picture._merch
-                    source(srcset="./img/popups/merch/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
-                    img(src="./img/popups/merch/pers.png" alt="sam favbet")
+                picture._fs99
+                    source(srcset="./img/popups/fs99/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                    img(src="./img/popups/fs99/pers.png" alt="sam favbet")
                 picture._nothing
                     source(srcset="./img/popups/nothing/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
                     img(src="./img/popups/nothing/pers.png" alt="sam favbet")
             .popup__main
                 .popup__item._iphone
-                    .popup__title(data-translate="popupIphonePrize") Iphone 15 Pro
+                    .popup__title(data-translate="popupIphonePrize") Iphone 16 Pro
                     .popup__prize
                         picture
                             source(srcset="./img/popups/iphone/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
@@ -228,12 +229,12 @@
                     .popup__title(data-translate="popupBonusPrize") 103 ₴ <br> bonus “Bet Insurance”
                     .popup__prize-bottom(data-translate="popupBonusPrizeLink")._bonus Go to #[a(href="#") My Account] and activate your bonus within 3 days
                     a(href="#" data-translate="popupTakeBonusBtn").popup__btn TAKE THE BONUS
-                .popup__item._merch
-                    .popup__title(data-translate="popupMerchPrize") Favbet City merch
+                .popup__item._fs99
+                    .popup__title(data-translate="popupFs99Prize") 99 FS
                     .popup__prize
                         picture
-                            source(srcset="./img/popups/merch/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
-                            img(src="./img/popups/merch/prize-desc.png" alt="sam favbet")
+                            source(srcset="./img/popups/fs99/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                            img(src="./img/popups/fs99/prize-desc.png" alt="sam favbet")
                     .popup__decor-left
                     .popup__decor-right
                 .popup__prize-bottom(data-translate="popupCallback") Our team will contact you to clarify <br> all the details.

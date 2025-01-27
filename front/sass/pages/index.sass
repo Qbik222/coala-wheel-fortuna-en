@@ -786,7 +786,7 @@ body
   align-items: center
   &__bar
     width: 384px
-    height: 63px
+    height: 100px
     padding-top: 7px
     display: flex
     flex-direction: column
@@ -816,7 +816,7 @@ body
       text-shadow: 3px 5px 4px rgba(0, 0, 0, 0.25), 1px 1px 0px #AD7402, 0px 0px 7px rgba(255, 230, 14, 0.70), 0px 0px 5px rgba(255, 229, 0, 0.60)
       -webkit-text-stroke-width: 1px
       -webkit-text-stroke-color: $light-yellow
-    &-sum
+    &-sum, &-data
       position: relative
       z-index: 1
       font-family: $font-suisse-intl-med
@@ -824,6 +824,12 @@ body
       color: $white
       text-align: center
       margin-bottom: -10px
+      span
+        font-family: inherit
+        font-size: inherit
+        line-height: inherit
+    &-data
+      margin-top: 10px
     &-wrap
       width: 347px
       height: 22px
@@ -1672,9 +1678,9 @@ body
           display: flex
           flex-direction: column
           align-items: center
-    &._merch
+    &._fs99
       .popup
-        &__buble._merch, &__item._merch
+        &__buble._fs99, &__item._fs99
           display: block
         &__prize
           max-width: 370px
@@ -1688,7 +1694,7 @@ body
         &__pers
           max-width: 290px
           margin: -30px auto -65px 100px
-          ._merch
+          ._fs99
             display: block
     &._nothing
       .popup
@@ -1808,7 +1814,7 @@ body
   100%
     transform: translate(-50%, -50%) rotate(1665deg)
 
-@keyframes wheelSpinMerch
+@keyframes wheelSpinFs99
   0%
     transform: translate(-50%, -50%) rotate(-112deg)
   10%
@@ -1854,9 +1860,9 @@ body
   animation: wheelSpinNothing 8s ease-in-out
   //animation: wheelSpinNothing .4s ease-in-out
 
-.merchPrize
-  animation: wheelSpinMerch 8s ease-in-out
-  //animation: wheelSpinMerch .4s ease-in-out
+.fs99Prize
+  animation: wheelSpinFs99 8s ease-in-out
+  //animation: wheelSpinFs99 .4s ease-in-out
 
 .ecoflowPrize
   animation: wheelSpinEcoflow 8s ease-in-out
@@ -2021,6 +2027,11 @@ body
 
 .en
   .wheel
+    &__sections
+      &::before
+        background: url("../img/wheel/wheel-sections-en.png") no-repeat 0 0/contain
+        @media screen and (max-width: 1050px)
+          background: url("../img/wheel/mob/wheel-sections-en.png") no-repeat 0 0/contain
     &__buble
       padding: 31px 60px 0px 50px
     &__sign

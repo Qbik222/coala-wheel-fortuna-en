@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         wheelBuble.classList.add("_hidden")
     })
     document.addEventListener("click", e => e.target === bubleBtn ? null : wheelBuble.classList.add("_hidden"))
-    let prizes = ['iphone', 'ecoflow', 'merch', 'nothing', "bonuses"]
+    let prizes = ['iphone', 'ecoflow', 'fs99', 'nothing', "bonuses"]
     function getRandomPrize(arr) {
         return arr[Math.floor(Math.random() * prizes.length)];
     }
@@ -148,6 +148,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         btn.style.pointerEvents = "none"
     }
     function firstSpin(sections, btn, wheel, arrow, prize, spinBg, salut){
+        // showPopup(sections, wheel,"_fs99", currentDay, spinBg, popupCloseBtn, popupContainer, popup)
         btn.addEventListener("click", () =>{
             if(prize === "iphone"){
                 sections.addEventListener("animationend", () => showPopup(sections, wheel, "_iphone", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
@@ -157,9 +158,9 @@ document.addEventListener("DOMContentLoaded", () =>{
                 sections.addEventListener("animationend", () => showPopup(sections, wheel, "_ecoflow", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
                 spinWheel(1665, "ecoflowPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
             }
-            if(prize === "merch"){
-                sections.addEventListener("animationend", () => showPopup(sections, wheel, "_merch", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
-                spinWheel(1711, "merchPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+            if(prize === "fs99"){
+                sections.addEventListener("animationend", () => showPopup(sections, wheel, "_fs99", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+                spinWheel(1711, "fs99Prize", sections, btn, wheel, arrow, prize, spinBg, salut)
             }
             if(prize === "nothing"){
                 popup.classList.add("_nothing")
@@ -172,7 +173,8 @@ document.addEventListener("DOMContentLoaded", () =>{
             }
         })
     }
-    firstSpin(wheelSections, wheelBtn, wheelWrap, wheelArrow, "merch", spinBg, salut)
+    firstSpin(wheelSections, wheelBtn, wheelWrap, wheelArrow, "iphone", spinBg, salut)
+
 //// accordion
     const accordionHeaders = document.querySelectorAll('.accordion__header');
     accordionHeaders.forEach(header => {
