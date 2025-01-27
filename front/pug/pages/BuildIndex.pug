@@ -1,17 +1,17 @@
-button.popup99 fs99
-.fav-page.en
+.fav-page#wheel
     .wheel
         .spin-bg
         .wheel__logo
             picture
                 source(srcset="./img/wheel/mob/wheel-logo.png" media="(max-width: 1050px)")
                 img(src="./img/wheel/wheel-logo.png" alt="favbet")
-        .wheel__wrap
+        .wheel__wrap._sign
             .wheel__lock-buble
                 .wheel__lock-title You've already made spin today.
                 .wheel__lock-text Come back tomorrow.
             .wheel__sign-buble
-                a(href="#").wheel__sign-btn login
+                a(href="/login/" data-translate="signBtn").wheel__sign-btn.unauth-msg
+                .wheel__sign-btn.btn-join.hide(data-translate="partBtn")
             .wheel__border
                 .sector-prize
             .wheel__sections
@@ -40,15 +40,15 @@ button.popup99 fs99
                         .wheel__days-item #[span.wheel__days-item-text #[span.day-num 7] <br> #[span.popup-day(data-translate="popupDay") day ]]
     .progress
         .progress__top
-            a(href="#").progress__top-left #[span(data-translate="btnCasino")  play <br> casino]
+            a(href="/casino/").progress__top-left #[span(data-translate="btnCasino")]
             .progress__bar
                 .progress__bar-thumb
                     .progress__bar-wrap
                         .progress__bar-line
-                            .progress__bar-status 500 ₴
+                            .progress__bar-status 0 ₴
                     .progress__bar-sum #[span.current 500] / #[span.total 1000 ₴]
                     .progress__bar-data #[span(data-translate="lastUpdate") Last update:]  #[span.current-data (20.05.2024)]
-            a(href="#").progress__top-right #[span(data-translate="btnSportBet")   bet on <br> sports]
+            a(href="/sports/sport/soccer/").progress__top-right #[span(data-translate="btnSportBet")]
         .progress__bottom
             .progress__bottom-wrap
                 .progress__bottom-title(data-translate="progressBottomTitle") 1 day — 1 attempt
@@ -70,23 +70,12 @@ button.popup99 fs99
                 .days__prize-item(data-translate="wheelBubblePrize") + 207 ₴ bonus “Bet Insurance”
     .accordion
         .accordion__item._spins
-            .accordion__header #[span.accordion__header-text(data-translate="accordionMySpins") My spins]
+            .accordion__header #[span.accordion__header-text(data-translate="accordionMySpins")]
             .accordion__content
+                .accordion__content-item.head-drop.hide(data-translate='spinsHeadPrize') #[span.content-date]
+                .accordion__content-item(data-translate="spinsNoSpin").no-spins
                 .accordion__content-wrap
-                    p 1. Як взяти участь?
-                    p Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці Акції.
-                    p 2. Набір балів
-                    p З 14.06.2024 до 14.07.2024 роби виграшні ставки на спортивні події в рамках Євро 2024 у розділах «Спорт» та «LIVE» заробляй бали в загальну турнірну таблицю. 
-                    p Ставки на спортивні події повинні бути від 200 грн, розраховані з результатом «Виграш» та з коефіцієнтом від 1.5 (ординар), або від 3.5 (експрес від 3 подій), без використання «CashOut» та «Повернення ставки».
-                    p 3.Вгадай точний рахунок топ-матчів етапу.
-                    p Вгадай точний рахунок запропонованих топ-матчів та помнож свої бали в турнірній таблиці. 
-                    p За 1 вгаданий рахунок - бали помножуються на х2.
-                    p За 2 вгаданих рахунки - бали помножуються на х3.
-                    p За 3 вгаданих ранунки- бали помножуються на х5.
-                    p 4. Отримуй бали та можливість виграти призи.
-                    p Чим більше балів, тим більше шансів здобути приз.
-                    p Бали нараховуватимуться та відображатимуться в Турнірній таблиці.
-                    p Після завершення кожного окремого періоду, переможці матимуть право отримати приз згідно із зайнятим призовим місцем.
+                    .accordion__list
         .accordion__item
             .accordion__header #[span.accordion__header-text(data-translate="accordionSpinRules") When and how can you spin the wheel?]
             .accordion__content
@@ -229,7 +218,7 @@ button.popup99 fs99
                 .popup__item._bonus
                     .popup__title(data-translate="popupBonusPrize") 103 ₴ <br> bonus “Bet Insurance”
                     .popup__prize-bottom(data-translate="popupBonusPrizeLink")._bonus Go to #[a(href="#") My Account] and activate your bonus within 3 days
-                    a(href="#" data-translate="popupTakeBonusBtn").popup__btn TAKE THE BONUS
+                    a(href="/personal-office/bonuses/casino/" data-translate="popupTakeBonusBtn").popup__btn
                 .popup__item._fs99
                     .popup__title(data-translate="popupFs99Prize") 99 FS
                     .popup__prize
@@ -251,13 +240,13 @@ button.popup99 fs99
                         .popup__days-item #[span.popup__days-item-text #[span.day-num 6] <br> #[span.popup-day(data-translate="popupDay") day ]]
                         .popup__days-item #[span.popup__days-item-text #[span.day-num 7] <br> #[span.popup-day(data-translate="popupDay") day ]]
                     .popup__btn-wrap
-                        a(href="#").popup__btn-left #[span(data-translate="btnCasino") play <br> casino]
-                        a(href="#").popup__btn-right #[span(data-translate="btnSportBet")   bet on <br> sports]
+                        a(href="/casino/").popup__btn-left #[span(data-translate="btnCasino")]
+                        a(href="/sports/sport/soccer/").popup__btn-right #[span(data-translate="btnSportBet")]
                 .popup__bottom._done
                     .popup__text(data-translate="popupChallengeDone") My challenge is complete! <br> Here’s your bonus:
                     .popup__prize-title
                         .popup__prize-title-item(data-translate="wheelBubbleSpans") 202 fs
                         .popup__prize-title-item(data-translate="wheelBubblePrize") + 207 ₴ bonus “Bet Insurance”
                     .popup__prize-text(data-translate="popupActiveBonusRemind") Activate the bonus within 3 days in your My Account
-                    a(href="#" data-translate="popupTakeBonusBtn").popup__btn TAKE THE BONUS
+                    a(href="/personal-office/bonuses/casino/" data-translate="popupTakeBonusBtn").popup__btn
                 .popup__close

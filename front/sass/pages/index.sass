@@ -21,9 +21,13 @@ $font-lobster-reg: Lobster, sans-serif
   height: 25px
   z-index: 10
 
+body.light
+  background: $blue
+
 body
   overscroll-behavior: none
   -webkit-tap-highlight-color: transparent
+  overscroll-behavior: none
   background: $blue
   img
     max-width: 100%
@@ -812,7 +816,9 @@ body
       right: 0
       top: -35px
       z-index: 1
-      min-width: 83px
+      width: fit-content
+      text-wrap: nowrap
+      //min-width: 86px
       font-size: 19px
       transform: translate(50%, 0)
       font-family: $font-lobster-reg
@@ -851,7 +857,7 @@ body
       top: 3px
       left: 5px
       height: 17px
-      width: 50%
+      //width: 50%
       min-width: 3%
       max-width: 97%
       border-radius: 10px
@@ -1021,10 +1027,56 @@ body
       .accordion
         &__content
           border: 1px solid $magenta
+          .head-drop,.no-spins
+            padding-top: 0
+            background: transparent
+            &::before
+              content: none
+          .no-spins
+            padding: 0
+            margin-bottom: 0
+          &-wrap
+            height: auto
+            max-height: 330px
+          &-item
+            display: flex
+            align-items: center
+            justify-content: flex-start
+            padding: 8px 20px 5px 20px
+            background: #000067
+            border-radius: 13px
+            text-align: right
+            font-family: $font-suisse-intl-reg
+            color: $white
+            font-size: 17px
+            &:not(:last-child)
+              margin-bottom: 5px
+            &::before
+              content: ""
+              display: block
+              width: 28px
+              min-width: 28px
+              height: 28px
+              background: url("https://fav-prom.com/html/wheel-ro/img/icon-spins.png") no-repeat 0 0/contain
+              margin: 0 5px 3px 0
+            span
+              font-family: inherit
+              color: inherit
+              font-size: inherit
+              &:first-child
+                margin-right: auto
+                padding-right: 15px
+          &.no-spins
+            padding-top: 15px
+            .accordion__content-item
+              display: none
+            .no-spins
+              display: block
         &__header
           border: 1px solid $magenta
           &::before
-            background: url("../img/drop-arrow-magenta.png") no-repeat 0 0/contain
+            background: url("https://fav-prom.com/html/wheel-ro/img/drop-arrow-magenta.png") no-repeat 0 0/contain
+
 
   &__header
     background-color: $blue
@@ -1057,7 +1109,8 @@ body
       background: url("../img/drop-arrow.png") no-repeat 0 0/contain
   &__content
     display: none
-    padding: 35px 20px 15px 20px
+    //padding: 35px 20px 15px 20px
+    padding: 24px 20px
     border: 2px solid #313FFF
     background-color: $blue
     border-radius: 20px
@@ -2124,3 +2177,6 @@ body
     .popups
       .popup
         transform: scale(.63) translate(-50%, -50%)
+
+.hide
+  display: none !important

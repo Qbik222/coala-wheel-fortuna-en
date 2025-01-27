@@ -1,8 +1,230 @@
-document.addEventListener("DOMContentLoaded", () =>{
+(function () {
+    const apiURL = 'https://fav-prom.com/api_wheel_ua';
+
+    const
+        unauthMsgs = document.querySelectorAll('.unauth-msg'),
+        participateBtns = document.querySelectorAll('.btn-join');
+
+    const roLeng = document.querySelector('#roLeng');
+    const enLeng = document.querySelector('#enLeng');
+
+    let locale = 'uk';
+
+    if (roLeng) locale = 'uk';
+    if (enLeng) locale = 'en';
+
+
+    let i18nData = {};
+    const debug = false;
+    let userId;
+    // userId = 134804;
+
+    function loadTranslations() {
+        return fetch(`${apiURL}/translates/${locale}`).then(res => res.json())
+            .then(json => {
+                i18nData = json;
+                translate();
+
+                var mutationObserver = new MutationObserver(function (mutations) {
+                    translate();
+                });
+                mutationObserver.observe(document.getElementById('wheel'), {
+                    childList: true,
+                    subtree: true,
+                });
+
+            });
+    }
+
+    function translate() {
+        const elems = document.querySelectorAll('[data-translate]')
+        if (elems && elems.length) {
+            elems.forEach(elem => {
+                const key = elem.getAttribute('data-translate');
+                elem.innerHTML = i18nData[key] || '*----NEED TO BE TRANSLATED----*   key:  ' + key;
+                elem.removeAttribute('data-translate');
+            })
+        }
+        if (locale === 'en') {
+            mainPage.classList.add('en');
+        }
+        refreshLocalizedClass();
+    }
+
+    function refreshLocalizedClass(element, baseCssClass) {
+        if (!element) {
+            return;
+        }
+        for (const lang of ['uk', 'en']) {
+            element.classList.remove(baseCssClass + lang);
+        }
+        element.classList.add(baseCssClass + locale);
+    }
+
+    const request = function (link, extraOptions) {
+        return fetch(apiURL + link, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            ...(extraOptions || {})
+        }).then(res => res.json())
+    }
+
+
+    function init() {
+        if (window.store) {
+            var state = window.store.getState();
+            userId = state.auth.isAuthorized && state.auth.id || '';
+            setupPage();
+        } else {
+            setupPage();
+            let c = 0;
+            var i = setInterval(function () {
+                if (c < 50) {
+                    if (!!window.g_user_id) {
+                        userId = window.g_user_id;
+                        setupPage();
+                        checkUserAuth();
+                        clearInterval(i);
+                    }
+                } else {
+                    clearInterval(i);
+                }
+            }, 200);
+        }
+
+        checkUserAuth();
+
+        participateBtns.forEach((authBtn, i) => {
+            authBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                participate();
+            });
+        });
+    }
+
+    function setupPage() {}
+
+    function participate() {
+        if (!userId) {
+            return;
+        }
+
+        const params = {userid: userId};
+        request('/user', {
+            method: 'POST',
+            body: JSON.stringify(params)
+        }).then(res => {
+            participateBtns.forEach(item => item.classList.add('hide'));
+            wheelWrap.classList.remove('_sign');
+            document.querySelector(".progress").classList.remove("_sign");
+            setupPage();
+        });
+    }
+
+
+
+    function checkUserAuth(skipPopup = false) {
+        if (userId) {
+            unauthMsgs.forEach(msg => msg.classList.add('hide'));
+            return request(`/favuser/${userId}?nocache=1`)
+                .then(res => {
+                    if (res.userid) {
+                        participateBtns.forEach(item => item.classList.add('hide'));
+                        wheelWrap.classList.remove('_sign');
+                        document.querySelector(".progress").classList.remove("_sign");
+
+                        // Відображення інформації користувача
+                        refreshUserInfo(res, skipPopup);
+                        displayUserSpins(res.spins);
+                    } else {
+                        participateBtns.forEach(item => item.classList.remove('hide'));
+                    }
+                });
+        } else {
+            participateBtns.forEach(btn => btn.classList.add('hide'));
+            unauthMsgs.forEach(msg => msg.classList.remove('hide'));
+        }
+    }
+
+    function displayUserSpins(spins, skipPopup = false) {
+        const headDropItem = document.querySelector('.accordion__content-item.head-drop');
+        const noSpinItem = document.querySelector('.accordion__content-item.no-spins');
+
+        if (!spins || spins.length === 0) {
+            headDropItem.classList.add('hide');
+            noSpinItem.classList.remove('hide');
+            return;
+        }
+
+        // Пропускаємо показ попапу, якщо skipPopup дорівнює true
+        if (skipPopup) {
+            return;
+        }
+
+        const spinsContainer = document.querySelector('.accordion__content-wrap');
+        spinsContainer.innerHTML = '';
+
+        headDropItem.classList.remove('hide');
+        noSpinItem.classList.add('hide');
+
+        spins.forEach(spin => {
+            const spinDate = new Date(spin.date);
+            const formattedDate = spinDate.toLocaleDateString('ua-UA');
+            const spinName = translateKey(spin.name) || '';
+
+            const spinElement = document.createElement('div');
+            spinElement.classList.add('accordion__content-item');
+
+            spinElement.innerHTML = `
+            <span class="content-date">${formattedDate}</span>
+            <span class="content-prize">${spinName}</span>
+        `;
+
+            spinsContainer.appendChild(spinElement);
+        });
+    }
+
+    function translateKey(key) {
+        if (!key) {
+            return;
+        }
+        return i18nData[key] || '*----NEED TO BE TRANSLATED----*   key:  ' + key;
+    }
+
+    loadTranslations()
+        .then(init);
+
+    let mainPage = document.querySelector('.fav-page');
+    setTimeout(() => mainPage.classList.add('overflow'), 1000);
+
+
+    let i = 1;
+    function sendSpinRequest() {
+        if (!userId) {
+            return;
+        }
+
+        if (debug) {
+            return Promise.resolve({
+                number: 'respin',
+                type: 'test'
+            });
+        }
+
+        const params = {userid: userId};
+        return request('/spin', {
+            method: 'POST',
+            body: JSON.stringify(params)
+        });
+    }
+
+    //Before Code
     const days = document.querySelectorAll(".wheel__days-item")
     const popupDays = document.querySelectorAll(".popup__days-item");
     const popupDaysMob = document.querySelectorAll(".days__item");
-    let currentDay = 5
+    let currentDay = 0
     function setDays(days, currentDay){
         days.forEach((day, i) =>{
             ++i
@@ -42,8 +264,6 @@ document.addEventListener("DOMContentLoaded", () =>{
             const fireworksWrap = container.querySelector('.fireworks-wrap');
             if (fireworksWrap) {
                 fireworksWrap.remove();
-            } else {
-                console.error(`Елемент з класом ".fireworks-wrap" не знайдено в контейнері ${containerSelector}.`);
             }
         } else {
             console.error(`Контейнер з селектором "${containerSelector}" не знайдено.`);
@@ -63,17 +283,17 @@ document.addEventListener("DOMContentLoaded", () =>{
     setDays(popupDaysMob, currentDay)
 
 /// wheel logic
-    const wheelSections = document.querySelector(".wheel__sections")
-    const wheelWrap = document.querySelector(".wheel__wrap")
-    const wheelArrow = document.querySelector(".wheel__arrow")
-    const wheelBtn = document.querySelector(".wheel__btn")
-    const spinBg = document.querySelector(".spin-bg")
-    const salut = document.querySelector(".fireworks-wrap")
-    const bubleBtn = document.querySelector(".wheel__days-icons")
-    const wheelBuble = document.querySelector(".wheel__buble")
-    const popupContainer = document.querySelector(".popups")
-    const popup = document.querySelector(".popup")
-    const popupCloseBtn = document.querySelector(".popup__close")
+    const wheelSections = document.querySelector(".wheel__sections"),
+        wheelWrap = document.querySelector(".wheel__wrap"),
+        wheelArrow = document.querySelector(".wheel__arrow"),
+        wheelBtn = document.querySelector(".wheel__btn"),
+        spinBg = document.querySelector(".spin-bg"),
+        salut = document.querySelector(".fireworks-wrap"),
+        bubleBtn = document.querySelector(".wheel__days-icons"),
+        wheelBuble = document.querySelector(".wheel__buble"),
+        popupContainer = document.querySelector(".popups"),
+        popup = document.querySelector(".popup"),
+        popupCloseBtn = document.querySelector(".popup__close")
 
     bubleBtn.addEventListener("mouseover", (e) =>{
         wheelBuble.classList.remove("_hidden")
@@ -86,11 +306,15 @@ document.addEventListener("DOMContentLoaded", () =>{
     function getRandomPrize(arr) {
         return arr[Math.floor(Math.random() * prizes.length)];
     }
-    function showPopup(sections, wheel, showClass, currentDay, spinBg, closeBtn, popupContainer, popup){
+    function showPopup(sections, wheel, showClass, streakBonus, spinBg, closeBtn, popupContainer, popup, classPrize){
         // document.querySelector(".fav-page").classList.add("popupBg")
+        if(classPrize){
+            popup.classList.add(`${classPrize}`);
+        }
+        if(classPrize === "respin") return
         popup.classList.add(`${showClass}`)
         popup.classList.contains('_nothing') === true ? null : addFireworks(".popups", 7)
-        currentDay === 7 ? popup.classList.add("_done") : popup.classList.add("_incomplete")
+        streakBonus ? popup.classList.add("_done") : popup.classList.add("_incomplete")
         popupContainer.classList.add("_opacity", "_zIndex")
         document.body.style.overflow = "hidden"
         spinBg.classList.remove("showSpinBg")
@@ -101,7 +325,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         const popupTitle = document.querySelectorAll(".popup__title")
         const popupLeftArrow = document.querySelectorAll(".popup__decor-left")
         const popupRightArrow = document.querySelectorAll(".popup__decor-right")
-        currentDay === 7 ? popupBody.classList.add("_done") : popup.classList.add("_incomplete")
+        streakBonus ? popupBody.classList.add("_done") : popup.classList.add("_incomplete")
         document.querySelector(".fav-page").classList.remove("bgScale")
         function addAnim(arr, classAnim){
             arr.forEach(item => item.classList.add(`${classAnim}`) )
@@ -132,48 +356,174 @@ document.addEventListener("DOMContentLoaded", () =>{
             popupContainer.classList.remove("_opacity", "_zIndex")
             popup.classList.remove(`${showClass}`, '_done', '_incomplete')
             removeFireworks(".popups");
-        })
+        }, {once: true});
+        document.querySelectorAll('.popup__btn').forEach(btn => btn.addEventListener("click", () => {
+            popup.classList.contains('_nothing') === true ? null : addFireworks(".wheel", 7)
+            wheel.classList.add("_lock")
+            document.querySelector(".progress").classList.add("_lock")
+            wheel.classList.remove("wheelSizeIncrease")
+            document.body.style.overflow = "auto"
+            popupContainer.classList.remove("_opacity", "_zIndex")
+            popup.classList.remove(`${showClass}`, '_done', '_incomplete')
+            removeFireworks(".popups");
+        }, {once: true}));
     }
+
     function spinWheel(position, animation, sections, btn, wheel, arrow, prize, spinBg, salut){
         sections.addEventListener("animationend", () =>{
             sections.style.transform = `translate(-50%, -50%) rotate(${position}deg)`
+            sections.classList.remove(`${animation}`)
         }, {once: true})
         sections.classList.add(`${animation}`)
         arrow.style.opacity = "0"
-
         wheel.classList.add("wheelSizeIncrease")
         document.querySelector(".fav-page").classList.add("bgScale")
         document.querySelector(".sector-prize").style.opacity = "1"
         spinBg.classList.add("showSpinBg")
-        btn.style.pointerEvents = "none"
+        if(animation !== "respinAnim"){
+            btn.style.pointerEvents = "none"
+        }
     }
-    function firstSpin(sections, btn, wheel, arrow, prize, spinBg, salut){
-        // showPopup(sections, wheel,"_fs99", currentDay, spinBg, popupCloseBtn, popupContainer, popup)
+
+
+    function initSpin(sections, btn, wheel, arrow, spinBg, salut, prize, streakBonus) {
         btn.addEventListener("click", () =>{
-            if(prize === "iphone"){
-                sections.addEventListener("animationend", () => showPopup(sections, wheel, "_iphone", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
-                spinWheel(1800, "iphonePrize", sections, btn, wheel, arrow, prize, spinBg, salut)
-            }
-            if(prize === "ecoflow"){
-                sections.addEventListener("animationend", () => showPopup(sections, wheel, "_ecoflow", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
-                spinWheel(1665, "ecoflowPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
-            }
-            if(prize === "fs99"){
-                sections.addEventListener("animationend", () => showPopup(sections, wheel, "_fs99", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
-                spinWheel(1711, "fs99Prize", sections, btn, wheel, arrow, prize, spinBg, salut)
-            }
-            if(prize === "nothing"){
-                popup.classList.add("_nothing")
-                sections.addEventListener("animationend", () => showPopup(sections, wheel,"_nothing", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
-                spinWheel(1755, "nothingPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
-            }
-            if(prize === "bonuses"){
-                sections.addEventListener("animationend", () => showPopup(sections, wheel, "_bonus", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
-                spinWheel(1935, "bonusesPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
-            }
+            wheelBtn.classList.add('_disabled');
+            sendSpinRequest().then(res => {
+                const authRes = checkUserAuth(true);
+                if(authRes) {
+                    return authRes.then(() => res);
+                }
+                return res;
+            })
+                .then(res => {
+                    console.log(res);
+                    if (!res || !!res.error) {
+                        wheelBtn.classList.add('pulse-btn');
+                        wheelBtn.classList.remove('_disabled');
+                        return;
+                    }
+                    const prize = res.number;
+                    const streakBonus = res.streakBonus || debug;
+                        if(prize === "iphone"){
+                            sections.addEventListener("animationend", () => showPopup(sections, wheel, "_iphone", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+                            spinWheel(1800, "iphonePrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+                        }
+                        if(prize === "ecoflow"){
+                            sections.addEventListener("animationend", () => showPopup(sections, wheel, "_ecoflow", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+                            spinWheel(1665, "ecoflowPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+                        }
+                        if(prize === "fs99"){
+                            sections.addEventListener("animationend", () => showPopup(sections, wheel, "_fs99", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+                            spinWheel(1711, "fs99Prize", sections, btn, wheel, arrow, prize, spinBg, salut)
+                        }
+                        if(prize === "nothing"){
+                            popup.classList.add("_nothing")
+                            sections.addEventListener("animationend", () => showPopup(sections, wheel,"_nothing", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+                            spinWheel(1755, "nothingPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+                        }
+                        if(prize === "bonuses"){
+                            sections.addEventListener("animationend", () => showPopup(sections, wheel, "_bonus", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+                            spinWheel(1935, "bonusesPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+                        }
+                });
         })
     }
-    firstSpin(wheelSections, wheelBtn, wheelWrap, wheelArrow, "iphone", spinBg, salut)
+    initSpin(wheelSections, wheelBtn, wheelWrap, wheelArrow, spinBg, salut)
+
+    function refreshUserInfo(userInfo, skipPopup) {
+        refreshDailyPointsSection(userInfo);
+        if(!skipPopup) {
+            refreshWheel(userInfo);
+        }
+        refreshStreak(userInfo);
+    }
+
+    function refreshWheel(userInfo) {
+        if (userInfo.spinAllowed) {
+            return;
+        }
+        if (userInfo.pointsPerDay >= 100) {
+            wheelWrap.classList.add('_lock');
+        } else {
+            wheelWrap.classList.add('_block');
+        }
+    }
+
+    function refreshDailyPointsSection(userInfo) {
+        const points = Math.min(userInfo.pointsPerDay || 0, 100);
+        const progressStatus = document.querySelector('.progress__bar-status');
+        progressStatus.innerHTML = points ? `${points} ₴` : " 0 ₴";
+        const currentSpan = document.querySelector('.current');
+        currentSpan.innerHTML = `${points}`;
+        const progressLine = document.querySelector('.progress__bar-line');
+        const progress = points / 100.0 * 100;
+        progressLine.style.width = `${progress}%`;
+
+        const lastUpdateElement = document.querySelector('.progress__bar-data');
+        if (lastUpdateElement) {
+            if (userInfo.lastUpdate) {
+                const lastUpdateDate = new Date(userInfo.lastUpdate);
+                if (!isNaN(lastUpdateDate)) {
+                    const day = String(lastUpdateDate.getDate()).padStart(2, '0');
+                    const month = String(lastUpdateDate.getMonth() + 1).padStart(2, '0');
+                    const year = lastUpdateDate.getFullYear();
+                    const hours = String(lastUpdateDate.getHours()).padStart(2, '0');
+                    const minutes = String(lastUpdateDate.getMinutes()).padStart(2, '0');
+
+                    const formattedDateTime = `${day}.${month}.${year}. ${hours}:${minutes}`;
+
+                    document.querySelector('.current-data').innerHTML = formattedDateTime;
+
+                    lastUpdateElement.classList.remove('hide');
+                }
+            }
+        }
+    }
+
+    function refreshStreak(userInfo) {
+        const items = document.querySelectorAll('.wheel__days-item');
+        let i = 0;
+        let streak = userInfo.spinsStreak;
+        for (let item of items) {
+            item.classList.remove('past');
+            item.classList.remove('next');
+            if (i < streak) {
+                item.classList.add('past');
+            } else {
+                item.classList.add('next');
+            }
+            i++;
+        }
+
+        const popupDays = document.querySelectorAll('.popup__days-item');
+        let j = 0;
+        for (let item of popupDays) {
+            item.classList.remove('active');
+            item.classList.remove('past');
+            item.classList.remove('next');
+            if (j < streak) {
+                item.classList.add('past');
+            } else {
+                item.classList.add('next');
+            }
+            j++;
+        }
+
+        const mobileDays = document.querySelectorAll('.days__item');
+        let k = 0;
+        for (let item of mobileDays) {
+            item.classList.remove('past');
+            item.classList.remove('next');
+            if (k < streak) {
+                item.classList.add('past');
+            } else {
+                item.classList.add('next');
+            }
+            k++;
+        }
+    }
+
 
 //// accordion
     const accordionHeaders = document.querySelectorAll('.accordion__header');
@@ -196,8 +546,95 @@ document.addEventListener("DOMContentLoaded", () =>{
         });
     });
 
-    firstSpin(wheelSections, document.querySelector(".popup99"), wheelWrap, wheelArrow, "fs99", spinBg, salut)
+    // for test
+    //
+    // const fs20 = document.querySelector('.fs20')
+    // const fs25 = document.querySelector('.fs25')
+    // const fs40 = document.querySelector('.fs40')
+    // const fs50 = document.querySelector('.fs50')
+    // const fs75 = document.querySelector('.fs75')
+    // const lei15 = document.querySelector('.lei15')
+    // const lei20 = document.querySelector('.lei20')
+    // const lei25 = document.querySelector('.lei25')
+    // const done = document.querySelector('.streak')
+    // const dropBonusButton = document.querySelector('.drop-bonus');
+    // const dropNothingButton = document.querySelector('.drop-nothing');
+    //
+    // const dropLock = document.querySelector('.lock');
+    // const dropSign = document.querySelector('.sign');
+    //
+    // var streakBonus = JSON.parse(localStorage.getItem('streakBonus')) || false;
+    //
+    // if(streakBonus){
+    //     done.style.background = "green"
+    // }
+    // if(!streakBonus){
+    //     done.style.background = "red"
+    // }
+    //
+    // done.addEventListener("click", () => {
+    //     streakBonus = !streakBonus;
+    //     localStorage.setItem('streakBonus', JSON.stringify(streakBonus));
+    //     streakBonus = JSON.parse(localStorage.getItem('streakBonus')) || false;
+    //     console.log(streakBonus)
+    //     window.location.reload()
+    //
+    // });
+    //
+    // document.querySelector(".drop-btn").addEventListener("click", () =>{
+    //     document.querySelector(".drop-menu").classList.toggle("_hidden")
+    // })
+    //
+    //
+    // initSpin(wheelSections, fs20, wheelWrap, wheelArrow, spinBg, salut, "fs20", streakBonus)
+    // initSpin(wheelSections, fs25, wheelWrap, wheelArrow, spinBg, salut, "fs25", streakBonus)
+    // initSpin(wheelSections, fs40, wheelWrap, wheelArrow, spinBg, salut, "fs40", streakBonus)
+    // initSpin(wheelSections, fs50, wheelWrap, wheelArrow, spinBg, salut, "fs50", streakBonus)
+    // initSpin(wheelSections, fs75, wheelWrap, wheelArrow, spinBg, salut, "fs75", streakBonus)
+    // initSpin(wheelSections, lei15, wheelWrap, wheelArrow, spinBg, salut, "lei15", streakBonus)
+    // initSpin(wheelSections, lei20, wheelWrap, wheelArrow, spinBg, salut, "lei20", streakBonus)
+    // initSpin(wheelSections, lei25, wheelWrap, wheelArrow, spinBg, salut, "lei25", streakBonus)
+    // // initSpin(wheelSections, dropBonusButton, wheelWrap, wheelArrow, spinBg, salut)
+    // initSpin(wheelSections, dropNothingButton, wheelWrap, wheelArrow, spinBg, salut, "nothing", streakBonus)
+    //
+    // dropLock.addEventListener("click", function () {
+    //     wheelWrap.classList.toggle("_lock");
+    //     document.querySelector(".progress").classList.toggle("_lock");
+    //     wheelWrap.classList.remove("_sign");
+    //     document.querySelector(".progress").classList.remove("_sign");
+    // });
+    // dropSign.addEventListener("click", function () {
+    //     wheelWrap.classList.toggle("_sign");
+    //     document.querySelector(".progress").classList.toggle("_sign");
+    //     wheelWrap.classList.remove("_lock");
+    //     document.querySelector(".progress").classList.remove("_lock");
+    // });
+
+})();
 
 
-})
+
+// btn.addEventListener("click", () =>{
+//     if(prize === "iphone"){
+//         sections.addEventListener("animationend", () => showPopup(sections, wheel, "_iphone", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+//         spinWheel(1800, "iphonePrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+//     }
+//     if(prize === "ecoflow"){
+//         sections.addEventListener("animationend", () => showPopup(sections, wheel, "_ecoflow", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+//         spinWheel(1665, "ecoflowPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+//     }
+//     if(prize === "fs99"){
+//         sections.addEventListener("animationend", () => showPopup(sections, wheel, "_fs99", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+//         spinWheel(1711, "fs99Prize", sections, btn, wheel, arrow, prize, spinBg, salut)
+//     }
+//     if(prize === "nothing"){
+//         popup.classList.add("_nothing")
+//         sections.addEventListener("animationend", () => showPopup(sections, wheel,"_nothing", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+//         spinWheel(1755, "nothingPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+//     }
+//     if(prize === "bonuses"){
+//         sections.addEventListener("animationend", () => showPopup(sections, wheel, "_bonus", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+//         spinWheel(1935, "bonusesPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+//     }
+// })
 
