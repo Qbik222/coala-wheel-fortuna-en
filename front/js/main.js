@@ -8,7 +8,7 @@
     const roLeng = document.querySelector('#roLeng');
     const enLeng = document.querySelector('#enLeng');
 
-    let locale = 'uk';
+    let locale = 'en';
 
     if (roLeng) locale = 'uk';
     if (enLeng) locale = 'en';
