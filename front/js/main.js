@@ -8,7 +8,7 @@
     const roLeng = document.querySelector('#roLeng');
     const enLeng = document.querySelector('#enLeng');
 
-    let locale = 'en';
+    let locale = sessionStorage.getItem("locale") ? sessionStorage.getItem("locale") : "uk"
 
     if (roLeng) locale = 'uk';
     if (enLeng) locale = 'en';
@@ -224,7 +224,9 @@
     const days = document.querySelectorAll(".wheel__days-item")
     const popupDays = document.querySelectorAll(".popup__days-item");
     const popupDaysMob = document.querySelectorAll(".days__item");
-    let currentDay = 0
+    let currentDay = sessionStorage.getItem("currentDay") ? Number(sessionStorage.getItem("currentDay")) : 0
+    console.log(currentDay)
+
     function setDays(days, currentDay){
         days.forEach((day, i) =>{
             ++i
@@ -389,47 +391,86 @@
     function initSpin(sections, btn, wheel, arrow, spinBg, salut, prize, streakBonus) {
         btn.addEventListener("click", () =>{
             wheelBtn.classList.add('_disabled');
-            sendSpinRequest().then(res => {
-                const authRes = checkUserAuth(true);
-                if(authRes) {
-                    return authRes.then(() => res);
-                }
-                return res;
-            })
-                .then(res => {
-                    console.log(res);
-                    if (!res || !!res.error) {
-                        wheelBtn.classList.add('pulse-btn');
-                        wheelBtn.classList.remove('_disabled');
-                        return;
-                    }
-                    const prize = res.number;
-                    const streakBonus = res.streakBonus || debug;
-                        if(prize === "iphone"){
-                            sections.addEventListener("animationend", () => showPopup(sections, wheel, "_iphone", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
-                            spinWheel(1800, "iphonePrize", sections, btn, wheel, arrow, prize, spinBg, salut)
-                        }
-                        if(prize === "ecoflow"){
-                            sections.addEventListener("animationend", () => showPopup(sections, wheel, "_ecoflow", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
-                            spinWheel(1665, "ecoflowPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
-                        }
-                        if(prize === "fs99"){
-                            sections.addEventListener("animationend", () => showPopup(sections, wheel, "_fs99", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
-                            spinWheel(1711, "fs99Prize", sections, btn, wheel, arrow, prize, spinBg, salut)
-                        }
-                        if(prize === "nothing"){
-                            popup.classList.add("_nothing")
-                            sections.addEventListener("animationend", () => showPopup(sections, wheel,"_nothing", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
-                            spinWheel(1755, "nothingPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
-                        }
-                        if(prize === "bonuses"){
-                            sections.addEventListener("animationend", () => showPopup(sections, wheel, "_bonus", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
-                            spinWheel(1935, "bonusesPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
-                        }
-                });
+
+            if(prize === "iphone"){
+                sections.addEventListener("animationend", () => showPopup(sections, wheel, "_iphone", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+                spinWheel(1800, "iphonePrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+            }
+            if(prize === "ecoflow"){
+                sections.addEventListener("animationend", () => showPopup(sections, wheel, "_ecoflow", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+                spinWheel(1665, "ecoflowPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+            }
+            if(prize === "fs99"){
+                sections.addEventListener("animationend", () => showPopup(sections, wheel, "_fs99", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+                spinWheel(1711, "fs99Prize", sections, btn, wheel, arrow, prize, spinBg, salut)
+            }
+            if(prize === "nothing"){
+                popup.classList.add("_nothing")
+                sections.addEventListener("animationend", () => showPopup(sections, wheel,"_nothing", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+                spinWheel(1755, "nothingPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+            }
+            if(prize === "bonuses"){
+                sections.addEventListener("animationend", () => showPopup(sections, wheel, "_bonus", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+                spinWheel(1935, "bonusesPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+            }
+            if(prize === "fs77"){
+                sections.addEventListener("animationend", () => showPopup(sections, wheel, "_fs77", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+                spinWheel(1845, "fs77Prize", sections, btn, wheel, arrow, prize, spinBg, salut)
+            }
+            if(prize === "bonus111"){
+                sections.addEventListener("animationend", () => showPopup(sections, wheel, "_bonus111", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+                spinWheel(1845, "bonus111Prize", sections, btn, wheel, arrow, prize, spinBg, salut)
+            }
+            if(prize === "respin"){
+                sections.addEventListener("animationend", () => showPopup(sections, wheel, "_bonus", streakBonus, spinBg, popupCloseBtn, popupContainer, popup, "respin"), {once: true})
+                spinWheel(89.5, "respinAnim", sections, btn, wheel, arrow, prize, spinBg, salut)
+            }
+
+            // sendSpinRequest().then(res => {
+            //     const authRes = checkUserAuth(true);
+            //     if(authRes) {
+            //         return authRes.then(() => res);
+            //     }
+            //     return res;
+            // })
+            //     .then(res => {
+            //         console.log(res);
+            //         if (!res || !!res.error) {
+            //             wheelBtn.classList.add('pulse-btn');
+            //             wheelBtn.classList.remove('_disabled');
+            //             return;
+            //         }
+            //         const prize = res.number;
+            //         const streakBonus = res.streakBonus || debug;
+            //             if(prize === "iphone"){
+            //                 sections.addEventListener("animationend", () => showPopup(sections, wheel, "_iphone", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+            //                 spinWheel(1800, "iphonePrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+            //             }
+            //             if(prize === "ecoflow"){
+            //                 sections.addEventListener("animationend", () => showPopup(sections, wheel, "_ecoflow", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+            //                 spinWheel(1665, "ecoflowPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+            //             }
+            //             if(prize === "fs99"){
+            //                 sections.addEventListener("animationend", () => showPopup(sections, wheel, "_fs99", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+            //                 spinWheel(1711, "fs99Prize", sections, btn, wheel, arrow, prize, spinBg, salut)
+            //             }
+            //             if(prize === "nothing"){
+            //                 popup.classList.add("_nothing")
+            //                 sections.addEventListener("animationend", () => showPopup(sections, wheel,"_nothing", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+            //                 spinWheel(1755, "nothingPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+            //             }
+            //             if(prize === "bonuses"){
+            //                 sections.addEventListener("animationend", () => showPopup(sections, wheel, "_bonus", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+            //                 spinWheel(1935, "bonusesPrize", sections, btn, wheel, arrow, prize, spinBg, salut)
+            //             }
+            //             if(prize === "fs77"){
+            //                 sections.addEventListener("animationend", () => showPopup(sections, wheel, "_fs77", currentDay, spinBg, popupCloseBtn, popupContainer, popup))
+            //                 spinWheel(1711, "fs77Prize", sections, btn, wheel, arrow, prize, spinBg, salut)
+            //             }
+            //     });
         })
     }
-    initSpin(wheelSections, wheelBtn, wheelWrap, wheelArrow, spinBg, salut)
+    initSpin(wheelSections, wheelBtn, wheelWrap, wheelArrow, spinBg, salut, "bonus111")
 
     function refreshUserInfo(userInfo, skipPopup) {
         refreshDailyPointsSection(userInfo);
@@ -548,67 +589,116 @@
 
     // for test
     //
-    // const fs20 = document.querySelector('.fs20')
-    // const fs25 = document.querySelector('.fs25')
-    // const fs40 = document.querySelector('.fs40')
-    // const fs50 = document.querySelector('.fs50')
-    // const fs75 = document.querySelector('.fs75')
-    // const lei15 = document.querySelector('.lei15')
-    // const lei20 = document.querySelector('.lei20')
-    // const lei25 = document.querySelector('.lei25')
-    // const done = document.querySelector('.streak')
-    // const dropBonusButton = document.querySelector('.drop-bonus');
-    // const dropNothingButton = document.querySelector('.drop-nothing');
-    //
-    // const dropLock = document.querySelector('.lock');
-    // const dropSign = document.querySelector('.sign');
-    //
-    // var streakBonus = JSON.parse(localStorage.getItem('streakBonus')) || false;
-    //
-    // if(streakBonus){
-    //     done.style.background = "green"
-    // }
-    // if(!streakBonus){
-    //     done.style.background = "red"
-    // }
-    //
-    // done.addEventListener("click", () => {
-    //     streakBonus = !streakBonus;
-    //     localStorage.setItem('streakBonus', JSON.stringify(streakBonus));
-    //     streakBonus = JSON.parse(localStorage.getItem('streakBonus')) || false;
-    //     console.log(streakBonus)
-    //     window.location.reload()
-    //
-    // });
-    //
-    // document.querySelector(".drop-btn").addEventListener("click", () =>{
-    //     document.querySelector(".drop-menu").classList.toggle("_hidden")
-    // })
-    //
-    //
-    // initSpin(wheelSections, fs20, wheelWrap, wheelArrow, spinBg, salut, "fs20", streakBonus)
-    // initSpin(wheelSections, fs25, wheelWrap, wheelArrow, spinBg, salut, "fs25", streakBonus)
-    // initSpin(wheelSections, fs40, wheelWrap, wheelArrow, spinBg, salut, "fs40", streakBonus)
-    // initSpin(wheelSections, fs50, wheelWrap, wheelArrow, spinBg, salut, "fs50", streakBonus)
-    // initSpin(wheelSections, fs75, wheelWrap, wheelArrow, spinBg, salut, "fs75", streakBonus)
-    // initSpin(wheelSections, lei15, wheelWrap, wheelArrow, spinBg, salut, "lei15", streakBonus)
-    // initSpin(wheelSections, lei20, wheelWrap, wheelArrow, spinBg, salut, "lei20", streakBonus)
-    // initSpin(wheelSections, lei25, wheelWrap, wheelArrow, spinBg, salut, "lei25", streakBonus)
-    // // initSpin(wheelSections, dropBonusButton, wheelWrap, wheelArrow, spinBg, salut)
-    // initSpin(wheelSections, dropNothingButton, wheelWrap, wheelArrow, spinBg, salut, "nothing", streakBonus)
-    //
-    // dropLock.addEventListener("click", function () {
-    //     wheelWrap.classList.toggle("_lock");
-    //     document.querySelector(".progress").classList.toggle("_lock");
-    //     wheelWrap.classList.remove("_sign");
-    //     document.querySelector(".progress").classList.remove("_sign");
-    // });
-    // dropSign.addEventListener("click", function () {
-    //     wheelWrap.classList.toggle("_sign");
-    //     document.querySelector(".progress").classList.toggle("_sign");
-    //     wheelWrap.classList.remove("_lock");
-    //     document.querySelector(".progress").classList.remove("_lock");
-    // });
+    const fs99 = document.querySelector('.fs99-popup')
+    const iphone = document.querySelector('.iphone-popup')
+    const ecoflow = document.querySelector('.ecoflow-popup')
+    const bonuses = document.querySelector('.bonus103-popup')
+    const fs77 = document.querySelector('.fs77-popup')
+    const bonus111 = document.querySelector('.bonus111-popup')
+    const done = document.querySelector('.done')
+    const dropNothingButton = document.querySelector('.nothing-popup');
+    const respinBtn= document.querySelector('.respin-popup');
+
+    const dropLock = document.querySelector('.lock');
+    const dropSign = document.querySelector('.sign');
+    const skipBtn = document.querySelector('.skip-anim');
+    const lngBtn = document.querySelector('.lng-btn');
+
+    var streakBonus = JSON.parse(localStorage.getItem('streakBonus')) || false;
+
+    let skipAnim = sessionStorage.getItem("skip") === "skip" ? true : false
+
+    lngBtn.addEventListener("click", () =>{
+        if(locale === "uk"){
+            sessionStorage.setItem("locale", "en")
+            window.location.reload()
+            return
+        }
+        if(locale === "en"){
+            sessionStorage.setItem("locale", "uk")
+            window.location.reload()
+            return
+        }
+    })
+
+    console.log(skipAnim)
+
+    if(skipAnim){
+        skipBtn.classList.add("green")
+        skipBtn.classList.remove("red")
+        wheelSections.classList.add("skipSpin")
+    }
+    if(!skipAnim){
+        skipBtn.classList.remove("green")
+        skipBtn.classList.add("red")
+        wheelSections.classList.remove("skipSpin")
+    }
+
+    skipBtn.addEventListener("click", (e) =>{
+        if(skipAnim){
+            skipBtn.classList.add("green")
+            skipBtn.classList.remove("red")
+            sessionStorage.removeItem("skip")
+            wheelSections.classList.add("skipSpin")
+            sessionStorage.removeItem("skip")
+            window.location.reload()
+        }
+        if(!skipAnim){
+            skipBtn.classList.remove("green")
+            skipBtn.classList.add("red")
+            sessionStorage.setItem("skip", "skip")
+            wheelSections.classList.remove("skipSpin")
+            window.location.reload()
+        }
+
+
+    })
+
+
+    if(streakBonus){
+        done.style.background = "green"
+        currentDay = 2
+    }
+    if(!streakBonus){
+        done.style.background = "red"
+        currentDay = 0
+    }
+
+    done.addEventListener("click", () => {
+        streakBonus = !streakBonus;
+        localStorage.setItem('streakBonus', JSON.stringify(streakBonus));
+        streakBonus = JSON.parse(localStorage.getItem('streakBonus')) || false;
+        console.log(streakBonus)
+        window.location.reload()
+
+    });
+
+    document.querySelector(".menu-btn").addEventListener("click", () =>{
+        document.querySelector(".menu-test").classList.toggle("_hidden")
+    })
+
+
+    initSpin(wheelSections, fs99, wheelWrap, wheelArrow, spinBg, salut, "fs99", streakBonus)
+    initSpin(wheelSections, iphone, wheelWrap, wheelArrow, spinBg, salut, "iphone", streakBonus)
+    initSpin(wheelSections, ecoflow, wheelWrap, wheelArrow, spinBg, salut, "ecoflow", streakBonus)
+    initSpin(wheelSections, bonuses, wheelWrap, wheelArrow, spinBg, salut, "bonuses", streakBonus)
+    initSpin(wheelSections, fs77, wheelWrap, wheelArrow, spinBg, salut, "fs77", streakBonus)
+    initSpin(wheelSections, bonus111, wheelWrap, wheelArrow, spinBg, salut, "bonus111", streakBonus)
+    initSpin(wheelSections, dropNothingButton, wheelWrap, wheelArrow, spinBg, salut, "nothing", streakBonus)
+    initSpin(wheelSections, respinBtn, wheelWrap, wheelArrow, spinBg, salut, "respin", streakBonus)
+
+    dropLock.addEventListener("click", function () {
+        wheelWrap.classList.toggle("_lock");
+        document.querySelector(".progress").classList.toggle("_lock");
+        wheelWrap.classList.remove("_sign");
+        document.querySelector(".progress").classList.remove("_sign");
+    });
+    dropSign.addEventListener("click", function () {
+        wheelWrap.classList.toggle("_sign");
+        document.querySelector(".progress").classList.toggle("_sign");
+        wheelWrap.classList.remove("_lock");
+        document.querySelector(".progress").classList.remove("_lock");
+    });
 
 })();
 

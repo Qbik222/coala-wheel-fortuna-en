@@ -13,13 +13,29 @@ $font-suisse-intl-semib: SuisseIntl-SemiBold, sans-serif
 $font-suisse-intl-bold: SuisseIntl-Bold, sans-serif
 $font-lobster-reg: Lobster, sans-serif
 
-.popup99
+.menu-btn
+  width: 60px
+  height: 20px
+  text-align: center
+  z-index: 20
   position: fixed
-  left: 0
   top: 0
-  width: 50px
-  height: 25px
-  z-index: 10
+  left: 0
+
+.menu-test
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  position: fixed
+  z-index: 20
+  left: 0
+  top: 25px
+
+.skip-anim, .done
+  &.green
+    background: green
+  &.red
+    background: red
 
 body.light
   background: $blue
@@ -312,7 +328,7 @@ body
     position: absolute
     z-index: 1
     transform-origin: center
-    transform: translate(-50%, -50%) rotate(-112deg)
+    transform: translate(-50%, -50%) rotate(89.5deg)
     &::before, &::after
       content: ""
       display: block
@@ -1418,7 +1434,7 @@ body
                   &::before
                     transform: scale(-1, -1)
                 &:nth-child(2)
-                  font-size: 20px
+                  font-size: 17px
                   line-height: 34px
                   text-shadow: 0px 0px 20px rgba(0, 198, 255, 0.62), 0px 0px 20px rgba(0, 198, 255, 0.62), 0px 0px 15px rgba(0, 198, 255, 0.62), 0px 0px 15px rgba(0, 198, 255, 0.62), 0px 0px 55px rgba(0, 198, 255, 0.62)
             &-text
@@ -1427,6 +1443,7 @@ body
               line-height: 18px
               font-family: $font-suisse-intl-reg
               margin-top: 5px
+              text-align: center
           &__wrap
             position: relative
           &__text
@@ -1442,7 +1459,7 @@ body
             margin-top: 15px
             z-index: 2
           &__btn
-            padding: 0 25px
+            padding: 0px 25px 2px 25px
             height: 62px
             z-index: 1
             background: url("../img/popups/btn-done.png") no-repeat 0 0/cover
@@ -1541,6 +1558,7 @@ body
               color: $white
               font-family: $font-suisse-intl-reg
               margin-top: 5px
+              max-width: 340px
           &__days
             display: flex
             align-items: center
@@ -1630,8 +1648,10 @@ body
           display: block
         &__item._iphone
           display: block
+          margin-top: -30px
         &__main
           padding: 15px 0 0 0
+          height: 620px
         &__buble
           margin: 0 0 -10px -50px
         &__pers
@@ -1643,7 +1663,7 @@ body
             display: block
         &__prize
           z-index: 1
-          margin: -65px 0 0 10px
+          margin: -65px auto 0 auto
           max-width: 350px
     &._ecoflow
       .popup
@@ -1654,11 +1674,14 @@ body
           margin: -25px auto -200px 125px
           ._ecoflow
             display: block
+        &__main
+          height: 590px
         &__title
-          margin-top: 15px
+          margin-top: -35px
         &__prize
           max-width: 360px
-          margin-top: -75px
+          //margin-top: -75px
+          margin: -75px auto 0 auto
         &__item._ecoflow
           display: block
     &._bonus
@@ -1746,6 +1769,26 @@ body
           display: block
         &__prize
           max-width: 370px
+          margin: -80px auto 0 auto
+          &-bottom
+            margin-top: -120px
+        &__buble
+          padding: 20px 20px 30px 25px
+        &__title
+          margin-top: -25px
+        &__main
+          height: 595px
+        &__pers
+          max-width: 290px
+          margin: -30px auto -65px 100px
+          ._fs99
+            display: block
+    &._fs77
+      .popup
+        &__buble._fs77, &__item._fs77
+          display: block
+        &__prize
+          max-width: 370px
           margin-top: -70px
           &-bottom
             margin-top: -120px
@@ -1756,7 +1799,25 @@ body
         &__pers
           max-width: 290px
           margin: -30px auto -65px 100px
-          ._fs99
+          ._fs77
+            display: block
+    &._bonus111
+      .popup
+        &__buble._bonus111, &__item._bonus111
+          display: block
+        &__prize
+          max-width: 370px
+          margin-top: -70px
+          &-bottom
+            margin-top: -120px
+        &__buble
+          padding-top: 20px
+        &__title
+          margin-top: 15px
+        &__pers
+          max-width: 290px
+          margin: -30px auto -65px 100px
+          ._bonus111
             display: block
     &._nothing
       .popup
@@ -1850,9 +1911,9 @@ body
 
 @keyframes wheelSpinIphone
   0%
-    transform: translate(-50%, -50%) rotate(-112deg)
+    transform: translate(-50%, -50%) rotate(89.5deg)
   10%
-    transform: translate(-50%, -50%) rotate(-125deg)
+    transform: translate(-50%, -50%) rotate(65deg)
   70%
     transform: translate(-50%, -50%) rotate(1814deg)
   80%
@@ -1864,9 +1925,9 @@ body
 
 @keyframes wheelSpinEcoflow
   0%
-    transform: translate(-50%, -50%) rotate(-112deg)
+    transform: translate(-50%, -50%) rotate(89.5deg)
   10%
-    transform: translate(-50%, -50%) rotate(-125deg)
+    transform: translate(-50%, -50%) rotate(65deg)
   70%
     transform: translate(-50%, -50%) rotate(1680deg)
   80%
@@ -1878,9 +1939,9 @@ body
 
 @keyframes wheelSpinFs99
   0%
-    transform: translate(-50%, -50%) rotate(-112deg)
+    transform: translate(-50%, -50%) rotate(89.5deg)
   10%
-    transform: translate(-50%, -50%) rotate(-125deg)
+    transform: translate(-50%, -50%) rotate(65deg)
   70%
     transform: translate(-50%, -50%) rotate(1735deg)
   80%
@@ -1890,11 +1951,25 @@ body
   100%
     transform: translate(-50%, -50%) rotate(1711deg)
 
+@keyframes wheelSpinFs77
+  0%
+    transform: translate(-50%, -50%) rotate(89.5deg)
+  10%
+    transform: translate(-50%, -50%) rotate(65deg)
+  70%
+    transform: translate(-50%, -50%) rotate(1872deg)
+  80%
+    transform: translate(-50%, -50%) rotate(1832deg)
+  90%
+    transform: translate(-50%, -50%) rotate(1852deg)
+  100%
+    transform: translate(-50%, -50%) rotate(1845deg)
+
 @keyframes wheelSpinNothing
   0%
-    transform: translate(-50%, -50%) rotate(-112deg)
+    transform: translate(-50%, -50%) rotate(89.5deg)
   10%
-    transform: translate(-50%, -50%) rotate(-125deg)
+    transform: translate(-50%, -50%) rotate(65deg)
   70%
     transform: translate(-50%, -50%) rotate(1780deg)
   80%
@@ -1906,9 +1981,9 @@ body
 
 @keyframes wheelSpinBonuses
   0%
-    transform: translate(-50%, -50%) rotate(-112deg)
+    transform: translate(-50%, -50%) rotate(89.5deg)
   10%
-    transform: translate(-50%, -50%) rotate(-125deg)
+    transform: translate(-50%, -50%) rotate(65deg)
   70%
     transform: translate(-50%, -50%) rotate(1951deg)
   80%
@@ -1918,22 +1993,89 @@ body
   100%
     transform: translate(-50%, -50%) rotate(1935deg)
 
+@keyframes wheelSpinBonus111
+  0%
+    transform: translate(-50%, -50%) rotate(89.5deg)
+  10%
+    transform: translate(-50%, -50%) rotate(65deg)
+  70%
+    transform: translate(-50%, -50%) rotate(1951deg)
+  80%
+    transform: translate(-50%, -50%) rotate(1921deg)
+  90%
+    transform: translate(-50%, -50%) rotate(1941deg)
+  100%
+    transform: translate(-50%, -50%) rotate(1935deg)
+
+@keyframes wheelSpinRespin
+  0%
+    transform: translate(-50%, -50%) rotate(89.5deg)
+  10%
+    transform: translate(-50%, -50%) rotate(65deg)
+  70%
+    transform: translate(-50%, -50%) rotate(1916deg)
+  80%
+    transform: translate(-50%, -50%) rotate(1863deg)
+  90%
+    transform: translate(-50%, -50%) rotate(1895deg)
+  100%
+    transform: translate(-50%, -50%) rotate(1889.5deg)
+
+@keyframes wheelSpinBonus111
+  0%
+    transform: translate(-50%, -50%) rotate(89.5deg)
+  10%
+    transform: translate(-50%, -50%) rotate(65deg)
+  70%
+    transform: translate(-50%, -50%) rotate(2010deg)
+  80%
+    transform: translate(-50%, -50%) rotate(1957deg)
+  90%
+    transform: translate(-50%, -50%) rotate(1987deg)
+  100%
+    transform: translate(-50%, -50%) rotate(1980deg)
+
 .nothingPrize
   animation: wheelSpinNothing 8s ease-in-out
   //animation: wheelSpinNothing .4s ease-in-out
+  &.skipSpin
+    animation: wheelSpinNothing .1s ease-in-out
 
 .fs99Prize
   animation: wheelSpinFs99 8s ease-in-out
+  &.skipSpin
+    animation: wheelSpinFs99 .1s ease-in-out
   //animation: wheelSpinFs99 .4s ease-in-out
+
+.fs77Prize
+  animation: wheelSpinFs77 8s ease-in-out
+  &.skipSpin
+    animation: wheelSpinFs77 .1s ease-in-out
 
 .ecoflowPrize
   animation: wheelSpinEcoflow 8s ease-in-out
+  &.skipSpin
+    animation: wheelSpinEcoflow .1s ease-in-out
 
 .iphonePrize
   animation: wheelSpinIphone 8s ease-in-out
+  &.skipSpin
+    animation: wheelSpinIphone .1s ease-in-out
 
 .bonusesPrize
   animation: wheelSpinBonuses 8s ease-in-out
+  &.skipSpin
+    animation: wheelSpinBonuses .1s ease-in-out
+
+.respinAnim
+  animation: wheelSpinRespin 8s ease-in-out
+  &.skipSpin
+    animation: wheelSpinRespin .1s ease-in-out
+
+.bonus111Prize
+  animation: wheelSpinBonus111 8s ease-in-out
+  &.skipSpin
+    animation: wheelSpinBonus111 .1s ease-in-out
 
 @keyframes spinBg
   0%
@@ -2122,6 +2264,9 @@ body
         //  display: block
     &._iphone, &._ecoflow
       .popup
+        &__item
+          &._iphone, &._ecoflow
+            margin-top: 10px
         &__main
           height: 595px
     &._nothing
@@ -2181,3 +2326,7 @@ body
 
 .hide
   display: none !important
+
+.skipSpin
+  &::before
+    animation-duration: .1s !important

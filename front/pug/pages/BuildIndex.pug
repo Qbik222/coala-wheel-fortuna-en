@@ -1,3 +1,18 @@
+button.menu-btn menu
+.menu-test
+    button.skip-anim skip anim
+    button.iphone-popup iphone
+    button.ecoflow-popup ecoflow
+    button.bonus111-popup 111%
+    button.bonus103-popup 103 uah
+    button.respin-popup spin more
+    button.fs77-popup fs 77
+    button.fs99-popup fs 99
+    button.nothing-popup nothing
+    button.lock lock
+    button.sign sign
+    button.lng-btn en
+    button.done done
 .fav-page#wheel
     .wheel
         .spin-bg
@@ -5,7 +20,7 @@
             picture
                 source(srcset="./img/wheel/mob/wheel-logo.png" media="(max-width: 1050px)")
                 img(src="./img/wheel/wheel-logo.png" alt="favbet")
-        .wheel__wrap._sign
+        .wheel__wrap
             .wheel__lock-buble
                 .wheel__lock-title You've already made spin today.
                 .wheel__lock-text Come back tomorrow.
@@ -47,7 +62,7 @@
                         .progress__bar-line
                             .progress__bar-status 0 ₴
                     .progress__bar-sum #[span.current 500] / #[span.total 1000 ₴]
-                    .progress__bar-data #[span(data-translate="lastUpdate") Last update:]  #[span.current-data 20.05.2024)]
+                    .progress__bar-data #[span(data-translate="lastUpdate") Last update:]  #[span.current-data 20.05.2024]
             a(href="/sports/sport/soccer/").progress__top-right #[span(data-translate="btnSportBet")]
         .progress__bottom
             .progress__bottom-wrap
@@ -179,6 +194,12 @@
             .popup__buble._fs99
                 .popup__buble-title(data-translate="popupFs99Title") Pssst
                 .popup__buble-text(data-translate="popupFs99Text") how about a special gift <br> from me?
+            .popup__buble._fs77
+                .popup__buble-title(data-translate="popupFs99Title") Pssst
+                .popup__buble-text(data-translate="popupFs99Text") how about a special gift <br> from me?
+            .popup__buble._bonus111
+                .popup__buble-title(data-translate="popupFs99Title") Pssst
+                .popup__buble-text(data-translate="popupFs99Text") how about a special gift <br> from me?
             .popup__buble._nothing
                 .popup__buble-title(data-translate="popupNothingTitle") No prizes today.
                 .popup__buble-text(data-translate="popupNothingText") Well, what can you do? Fortune has turned the other way.
@@ -193,6 +214,12 @@
                     source(srcset="./img/popups/bonus/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
                     img(src="./img/popups/bonus/pers.png" alt="sam favbet")
                 picture._fs99
+                    source(srcset="./img/popups/fs99/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                    img(src="./img/popups/fs99/pers.png" alt="sam favbet")
+                picture._fs77
+                    source(srcset="./img/popups/fs99/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                    img(src="./img/popups/fs99/pers.png" alt="sam favbet")
+                picture._bonus111
                     source(srcset="./img/popups/fs99/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
                     img(src="./img/popups/fs99/pers.png" alt="sam favbet")
                 picture._nothing
@@ -221,6 +248,22 @@
                     a(href="/personal-office/bonuses/casino/" data-translate="popupTakeBonusBtn").popup__btn
                 .popup__item._fs99
                     .popup__title(data-translate="popupFs99Prize") 99 FS
+                    .popup__prize
+                        picture
+                            source(srcset="./img/popups/fs99/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                            img(src="./img/popups/fs99/prize-desc.png" alt="sam favbet")
+                    .popup__decor-left
+                    .popup__decor-right
+                .popup__item._fs77
+                    .popup__title(data-translate="popupFs77Prize") 77 FS
+                    .popup__prize
+                        picture
+                            source(srcset="./img/popups/fs99/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                            img(src="./img/popups/fs99/prize-desc.png" alt="sam favbet")
+                    .popup__decor-left
+                    .popup__decor-right
+                .popup__item._bonus111
+                    .popup__title(data-translate="popupBonus111Prize") 77 FS
                     .popup__prize
                         picture
                             source(srcset="./img/popups/fs99/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
