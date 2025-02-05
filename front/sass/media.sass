@@ -292,7 +292,8 @@
   .accordion
     max-width: 470px
     &__content
-      padding-top: 20px
+      //padding-top: 20px
+      padding: 17px 20px
       font-size: 14px
       line-height: 20px
       p:not(:last-child)
@@ -478,8 +479,8 @@
       &::before, &::after
         content: ""
         position: absolute
-        right: -77px
-        top: 80px
+        right: -86px
+        top: 52px
         width: 22px
         height: 22px
         background: url("../img/days/days-gift.png") no-repeat 0 0/contain
@@ -505,6 +506,7 @@
       margin-top: 10px
       flex-direction: column
       &-item
+        font-family: inherit
         &:nth-child(1)
           font-size: 30px
           line-height: 34px
@@ -526,7 +528,7 @@
           &::before
             transform: scale(-1, -1)
         &:nth-child(2)
-          font-size: 20px
+          font-size: 17px
           line-height: 34px
           text-shadow: 0px 0px 20px rgba(0, 198, 255, 0.62), 0px 0px 20px rgba(0, 198, 255, 0.62), 0px 0px 15px rgba(0, 198, 255, 0.62), 0px 0px 15px rgba(0, 198, 255, 0.62), 0px 0px 55px rgba(0, 198, 255, 0.62)
 
@@ -561,7 +563,7 @@
     .popup
       min-height: 850px
       max-height: 850px
-      transform: scale(1) translate(-50%, -50%)
+      transform: scale(.9) translate(-50%, -50%)
       top: 50%
       left: 50%
       display: flex
@@ -635,17 +637,21 @@
                 top: 150px
           &__btn
             margin-top: 10px
-      &._fs99
+      &._fs99, &._fs77
         .popup
           &__buble
             margin: 0px 0 10px -50px
           &__title
-            font-size: 33px
+            font-size: 32px
           &__bottom
             &._incomplete
               .popup
                 &__btn-wrap
                   margin-top: 0
+      &._fs77
+        .popup
+          &__title
+            font-size: 27px
       &._nothing
         .popup
           &__days
@@ -663,7 +669,7 @@
               max-height: 320px
               min-height: 320px
               padding-top: 45px
-      &._bonus
+      &._bonus, &._bonus111
         .popup
           &__buble
             margin-left: -90px
@@ -684,6 +690,14 @@
             &._done
               min-height: 490px
               max-height: 490px
+      &._bonus111
+        .popup
+          &__main
+            min-height: 400px
+            max-height: 400px
+            &._done
+              min-height: 450px
+              max-height: 450px
       &._merch
         .popup
           &__days
@@ -791,19 +805,19 @@
 @media screen and (max-width: 450px) and (max-height: 870px) and (orientation: portrait)
   .popups
     .popup
-      transform: scale(.95) translate(-50%, -50%)
+      transform: scale(.85) translate(-50%, -50%)
       transform-origin: top left
-      top: 41%
+      top: 40%
     .popup._nothing
-      transform: scale(.95) translate(-50%, -65%)
+      transform: scale(.9) translate(-50%, -65%)
 
 @media screen and (max-width: 450px) and (max-height: 770px) and (orientation: portrait)
   .popups
     .popup
-      transform: scale(.82) translate(-50%, -50%)
+      transform: scale(.73) translate(-50%, -50%)
       top: 35%
     .popup._nothing
-      transform: scale(.9) translate(-50%, -65%)
+      transform: scale(.83) translate(-50%, -65%)
 
 @media screen and (max-width: 430px) and (min-height: 890px) and (orientation: portrait)
   .popups
@@ -813,8 +827,8 @@
 @media screen and (max-width: 400px) and (max-height: 790px) and (orientation: portrait)
   .popups
     .popup
-      top: 36%
-      transform: scale(.92) translate(-50%, -50%)
+      top: 37%
+      transform: scale(.8) translate(-50%, -50%)
     .popup._nothing
       transform: scale(.92) translate(-50%, -65%)
 
@@ -837,10 +851,10 @@
 @media screen and (max-width: 375px) and (max-height: 670px) and (orientation: portrait)
   .popups
     .popup
-      top: 31%
-      transform: scale(.77) translate(-50%, -50%)
+      top: 32%
+      transform: scale(.67) translate(-50%, -50%)
     .popup._nothing
-      transform: scale(.83) translate(-50%, -65%)
+      transform: scale(.83) translate(-50%, -60%)
 
 @media screen and (max-width: 375px) and (max-height: 600px) and (orientation: portrait)
   .popups
@@ -860,18 +874,18 @@
 @media screen and (max-width: 360px) and (max-height: 750px) and (orientation: portrait)
   .popups
     .popup
-      top: 34%
-      transform: scale(.87) translate(-50%, -50%)
+      top: 35%
+      transform: scale(.75) translate(-50%, -50%)
     .popup._nothing
       transform: scale(.87) translate(-50%, -65%)
 
 @media screen and (max-width: 360px) and (max-height: 650px) and (orientation: portrait)
   .popups
     .popup
-      top: 29%
-      transform: scale(.7) translate(-50%, -50%)
+      top: 30%
+      transform: scale(.63) translate(-50%, -50%)
     .popup._nothing
-      transform: scale(.8) translate(-50%, -65%)
+      transform: scale(.75) translate(-50%, -65%)
 
 @media screen and (max-width: 360px) and (max-height: 600px) and (orientation: portrait)
   .popups
@@ -908,10 +922,11 @@
 @media screen and (max-width: 320px) and ( max-height: 580px)
   .popups
     .popup
-      top: 26%
-      transform: scale(.7) translate(-50%, -50%)
+      top: 27%
+      transform: scale(.55) translate(-50%, -50%)
     .popup._nothing
-      transform: scale(.7) translate(-50%, -65%)
+      transform: scale(.7) translate(-50%, -60%)
+
 
 @media screen and (max-width: 950px) and (max-height: 450px) and (orientation: landscape)
   .fireworks-wrap

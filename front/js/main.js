@@ -197,6 +197,10 @@
         .then(init);
 
     let mainPage = document.querySelector('.fav-page');
+    mainPage.parentNode.parentNode.children[0].style.zIndex = '1';
+    mainPage.parentNode.parentNode.children[0].style.margin = '0';
+    mainPage.parentNode.parentNode.children[0].style.padding = '16px';
+    mainPage.parentNode.parentNode.children[0].style.background = 'inherit';
     setTimeout(() => mainPage.classList.add('overflow'), 1000);
 
 

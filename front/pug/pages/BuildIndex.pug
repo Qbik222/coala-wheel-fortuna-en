@@ -17,9 +17,12 @@ button.menu-btn menu
     .wheel
         .spin-bg
         .wheel__logo
-            picture
-                source(srcset="./img/wheel/mob/wheel-logo.png" media="(max-width: 1050px)")
-                img(src="./img/wheel/wheel-logo.png" alt="favbet")
+            picture.uk
+                source(srcset="https://fav-prom.com/html/wheel-ua/img/wheel/mob/wheel-logo.png" media="(max-width: 1050px)")
+                img(src="https://fav-prom.com/html/wheel-ua/img/wheel/wheel-logo.png" alt="favbet")
+            picture.en
+                source(srcset="https://fav-prom.com/html/wheel-ua/img/wheel/mob/wheel-logo-en.png" media="(max-width: 1050px)")
+                img(src="https://fav-prom.com/html/wheel-ua/img/wheel/wheel-logo-en.png" alt="favbet")
         .wheel__wrap
             .wheel__lock-buble
                 .wheel__lock-title You've already made spin today.
@@ -94,93 +97,23 @@ button.menu-btn menu
         .accordion__item
             .accordion__header #[span.accordion__header-text(data-translate="accordionSpinRules") When and how can you spin the wheel?]
             .accordion__content
-                .accordion__content-wrap
-                    p 1. Як взяти участь?
-                    p Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці Акції.
-                    p 2. Набір балів
-                    p З 14.06.2024 до 14.07.2024 роби виграшні ставки на спортивні події в рамках Євро 2024 у розділах «Спорт» та «LIVE» заробляй бали в загальну турнірну таблицю. 
-                    p Ставки на спортивні події повинні бути від 200 грн, розраховані з результатом «Виграш» та з коефіцієнтом від 1.5 (ординар), або від 3.5 (експрес від 3 подій), без використання «CashOut» та «Повернення ставки».
-                    p 3.Вгадай точний рахунок топ-матчів етапу.
-                    p Вгадай точний рахунок запропонованих топ-матчів та помнож свої бали в турнірній таблиці. 
-                    p За 1 вгаданий рахунок - бали помножуються на х2.
-                    p За 2 вгаданих рахунки - бали помножуються на х3.
-                    p За 3 вгаданих ранунки- бали помножуються на х5.
-                    p 4. Отримуй бали та можливість виграти призи.
-                    p Чим більше балів, тим більше шансів здобути приз.
-                    p Бали нараховуватимуться та відображатимуться в Турнірній таблиці.
-                    p Після завершення кожного окремого періоду, переможці матимуть право отримати приз згідно із зайнятим призовим місцем.
+                .accordion__content-wrap(data-translate="accordionContentSpinRules")
         .accordion__item
             .accordion__header #[span.accordion__header-text(data-translate="accordionProgressRules") How are points calculated in the progress bar?]
             .accordion__content
-                .accordion__content-wrap
-                    p 1. Як взяти участь?
-                    p Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці Акції.
-                    p 2. Набір балів
-                    p З 14.06.2024 до 14.07.2024 роби виграшні ставки на спортивні події в рамках Євро 2024 у розділах «Спорт» та «LIVE» заробляй бали в загальну турнірну таблицю. 
-                    p Ставки на спортивні події повинні бути від 200 грн, розраховані з результатом «Виграш» та з коефіцієнтом від 1.5 (ординар), або від 3.5 (експрес від 3 подій), без використання «CashOut» та «Повернення ставки».
-                    p 3.Вгадай точний рахунок топ-матчів етапу.
-                    p Вгадай точний рахунок запропонованих топ-матчів та помнож свої бали в турнірній таблиці. 
-                    p За 1 вгаданий рахунок - бали помножуються на х2.
-                    p За 2 вгаданих рахунки - бали помножуються на х3.
-                    p За 3 вгаданих ранунки- бали помножуються на х5.
-                    p 4. Отримуй бали та можливість виграти призи.
-                    p Чим більше балів, тим більше шансів здобути приз.
-                    p Бали нараховуватимуться та відображатимуться в Турнірній таблиці.
-                    p Після завершення кожного окремого періоду, переможці матимуть право отримати приз згідно із зайнятим призовим місцем.
+                .accordion__content-wrap(data-translate="accordionContentProgressRules")
         .accordion__item
             .accordion__header #[span.accordion__header-text(data-translate="accordionPrizeRules") What bonuses and physical prizes can I receive?]
             .accordion__content
-                .accordion__content-wrap
-                    p 1. Як взяти участь?
-                    p Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці Акції.
-                    p 2. Набір балів
-                    p З 14.06.2024 до 14.07.2024 роби виграшні ставки на спортивні події в рамках Євро 2024 у розділах «Спорт» та «LIVE» заробляй бали в загальну турнірну таблицю. 
-                    p Ставки на спортивні події повинні бути від 200 грн, розраховані з результатом «Виграш» та з коефіцієнтом від 1.5 (ординар), або від 3.5 (експрес від 3 подій), без використання «CashOut» та «Повернення ставки».
-                    p 3.Вгадай точний рахунок топ-матчів етапу.
-                    p Вгадай точний рахунок запропонованих топ-матчів та помнож свої бали в турнірній таблиці. 
-                    p За 1 вгаданий рахунок - бали помножуються на х2.
-                    p За 2 вгаданих рахунки - бали помножуються на х3.
-                    p За 3 вгаданих ранунки- бали помножуються на х5.
-                    p 4. Отримуй бали та можливість виграти призи.
-                    p Чим більше балів, тим більше шансів здобути приз.
-                    p Бали нараховуватимуться та відображатимуться в Турнірній таблиці.
-                    p Після завершення кожного окремого періоду, переможці матимуть право отримати приз згідно із зайнятим призовим місцем.
+                .accordion__content-wrap(data-translate="accordionContentPrizeRules")
         .accordion__item
             .accordion__header #[span.accordion__header-text(data-translate="accordionAboutChallenge") What is “Sam's Challenge”?]
             .accordion__content
-                .accordion__content-wrap
-                    p 1. Як взяти участь?
-                    p Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці Акції.
-                    p 2. Набір балів
-                    p З 14.06.2024 до 14.07.2024 роби виграшні ставки на спортивні події в рамках Євро 2024 у розділах «Спорт» та «LIVE» заробляй бали в загальну турнірну таблицю. 
-                    p Ставки на спортивні події повинні бути від 200 грн, розраховані з результатом «Виграш» та з коефіцієнтом від 1.5 (ординар), або від 3.5 (експрес від 3 подій), без використання «CashOut» та «Повернення ставки».
-                    p 3.Вгадай точний рахунок топ-матчів етапу.
-                    p Вгадай точний рахунок запропонованих топ-матчів та помнож свої бали в турнірній таблиці. 
-                    p За 1 вгаданий рахунок - бали помножуються на х2.
-                    p За 2 вгаданих рахунки - бали помножуються на х3.
-                    p За 3 вгаданих ранунки- бали помножуються на х5.
-                    p 4. Отримуй бали та можливість виграти призи.
-                    p Чим більше балів, тим більше шансів здобути приз.
-                    p Бали нараховуватимуться та відображатимуться в Турнірній таблиці.
-                    p Після завершення кожного окремого періоду, переможці матимуть право отримати приз згідно із зайнятим призовим місцем.
+                .accordion__content-wrap(data-translate="accordionContentAboutChallenge")
         .accordion__item._rules
             .accordion__header #[span.accordion__header-text(data-translate="accordionRules") Terms and Conditions:]
             .accordion__content
-                .accordion__content-wrap
-                    p 1. Як взяти участь?
-                    p Авторизуйся на акційній сторінці, натиснувши кнопку «Авторизуйся», або зареєструйся як користувач. Натисни кнопку «Взяти участь» на сторінці Акції.
-                    p 2. Набір балів
-                    p З 14.06.2024 до 14.07.2024 роби виграшні ставки на спортивні події в рамках Євро 2024 у розділах «Спорт» та «LIVE» заробляй бали в загальну турнірну таблицю. 
-                    p Ставки на спортивні події повинні бути від 200 грн, розраховані з результатом «Виграш» та з коефіцієнтом від 1.5 (ординар), або від 3.5 (експрес від 3 подій), без використання «CashOut» та «Повернення ставки».
-                    p 3.Вгадай точний рахунок топ-матчів етапу.
-                    p Вгадай точний рахунок запропонованих топ-матчів та помнож свої бали в турнірній таблиці. 
-                    p За 1 вгаданий рахунок - бали помножуються на х2.
-                    p За 2 вгаданих рахунки - бали помножуються на х3.
-                    p За 3 вгаданих ранунки- бали помножуються на х5.
-                    p 4. Отримуй бали та можливість виграти призи.
-                    p Чим більше балів, тим більше шансів здобути приз.
-                    p Бали нараховуватимуться та відображатимуться в Турнірній таблиці.
-                    p Після завершення кожного окремого періоду, переможці матимуть право отримати приз згідно із зайнятим призовим місцем.
+                .accordion__content-wrap(data-translate="accordionContentAboutRules")
     .popups
         .popup
             .popup__buble._iphone
@@ -195,51 +128,50 @@ button.menu-btn menu
                 .popup__buble-title(data-translate="popupFs99Title") Pssst
                 .popup__buble-text(data-translate="popupFs99Text") how about a special gift <br> from me?
             .popup__buble._fs77
-                .popup__buble-title(data-translate="popupFs99Title") Pssst
-                .popup__buble-text(data-translate="popupFs99Text") how about a special gift <br> from me?
+                .popup__buble-title(data-translate="popupFs99Title")
+                .popup__buble-text(data-translate="popupFs99Text")
             .popup__buble._bonus111
-                .popup__buble-title(data-translate="popupFs99Title") Pssst
-                .popup__buble-text(data-translate="popupFs99Text") how about a special gift <br> from me?
+                .popup__buble-text(data-translate="popupBonusText")
             .popup__buble._nothing
                 .popup__buble-title(data-translate="popupNothingTitle") No prizes today.
                 .popup__buble-text(data-translate="popupNothingText") Well, what can you do? Fortune has turned the other way.
             .popup__pers
                 picture._iphone
-                    source(srcset="./img/popups/iphone/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
-                    img(src="./img/popups/iphone/pers.png" alt="sam favbet")
+                    source(srcset="https://fav-prom.com/html/wheel-ua/img/popups/iphone/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                    img(src="https://fav-prom.com/html/wheel-ua/img/popups/iphone/pers.png" alt="sam favbet")
                 picture._ecoflow
-                    source(srcset="./img/popups/ecoflow/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
-                    img(src="./img/popups/ecoflow/pers.png" alt="sam favbet")
+                    source(srcset="https://fav-prom.com/html/wheel-ua/img/popups/ecoflow/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                    img(src="https://fav-prom.com/html/wheel-ua/img/popups/ecoflow/pers.png" alt="sam favbet")
                 picture._bonus
-                    source(srcset="./img/popups/bonus/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
-                    img(src="./img/popups/bonus/pers.png" alt="sam favbet")
+                    source(srcset="https://fav-prom.com/html/wheel-ua/img/popups/bonus/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                    img(src="https://fav-prom.com/html/wheel-ua/img/popups/bonus/pers.png" alt="sam favbet")
                 picture._fs99
-                    source(srcset="./img/popups/fs99/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
-                    img(src="./img/popups/fs99/pers.png" alt="sam favbet")
+                    source(srcset="https://fav-prom.com/html/wheel-ua/img/popups/fs99/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                    img(src="https://fav-prom.com/html/wheel-ua/img/popups/fs99/pers.png" alt="sam favbet")
                 picture._fs77
-                    source(srcset="./img/popups/fs99/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
-                    img(src="./img/popups/fs99/pers.png" alt="sam favbet")
+                    source(srcset="https://fav-prom.com/html/wheel-ua/img/popups/fs99/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                    img(src="https://fav-prom.com/html/wheel-ua/img/popups/fs99/pers.png" alt="sam favbet")
                 picture._bonus111
-                    source(srcset="./img/popups/fs99/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
-                    img(src="./img/popups/fs99/pers.png" alt="sam favbet")
+                    source(srcset="https://fav-prom.com/html/wheel-ua/img/popups/fs99/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                    img(src="https://fav-prom.com/html/wheel-ua/img/popups/fs99/pers.png" alt="sam favbet")
                 picture._nothing
-                    source(srcset="./img/popups/nothing/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
-                    img(src="./img/popups/nothing/pers.png" alt="sam favbet")
+                    source(srcset="https://fav-prom.com/html/wheel-ua/img/popups/nothing/pers-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                    img(src="https://fav-prom.com/html/wheel-ua/img/popups/nothing/pers.png" alt="sam favbet")
             .popup__main
                 .popup__item._iphone
                     .popup__title(data-translate="popupIphonePrize") Iphone 16 Pro
                     .popup__prize
                         picture
-                            source(srcset="./img/popups/iphone/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
-                            img(src="./img/popups/iphone/prize-desc.png" alt="sam favbet")
+                            source(srcset="https://fav-prom.com/html/wheel-ua/img/popups/iphone/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                            img(src="https://fav-prom.com/html/wheel-ua/img/popups/iphone/prize-desc.png" alt="sam favbet")
                     .popup__decor-left
                     .popup__decor-right
                 .popup__item._ecoflow
                     .popup__title(data-translate="popupEcoflowPrize") EcoFlow RIVER 2
                     .popup__prize
                         picture
-                            source(srcset="./img/popups/ecoflow/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
-                            img(src="./img/popups/ecoflow/prize-desc.png" alt="sam favbet")
+                            source(srcset="https://fav-prom.com/html/wheel-ua/img/popups/ecoflow/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                            img(src="https://fav-prom.com/html/wheel-ua/img/popups/ecoflow/prize-desc.png" alt="sam favbet")
                     .popup__decor-left
                     .popup__decor-right
                 .popup__item._bonus
@@ -250,26 +182,22 @@ button.menu-btn menu
                     .popup__title(data-translate="popupFs99Prize") 99 FS
                     .popup__prize
                         picture
-                            source(srcset="./img/popups/fs99/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
-                            img(src="./img/popups/fs99/prize-desc.png" alt="sam favbet")
+                            source(srcset="https://fav-prom.com/html/wheel-ua/img/popups/fs99/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                            img(src="https://fav-prom.com/html/wheel-ua/img/popups/fs99/prize-desc.png" alt="sam favbet")
                     .popup__decor-left
                     .popup__decor-right
                 .popup__item._fs77
                     .popup__title(data-translate="popupFs77Prize") 77 FS
                     .popup__prize
                         picture
-                            source(srcset="./img/popups/fs99/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
-                            img(src="./img/popups/fs99/prize-desc.png" alt="sam favbet")
+                            source(srcset="https://fav-prom.com/html/wheel-ua/img/popups/fs77/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
+                            img(src="https://fav-prom.com/html/wheel-ua/img/popups/fs77/prize-desc.png" alt="sam favbet")
                     .popup__decor-left
                     .popup__decor-right
                 .popup__item._bonus111
-                    .popup__title(data-translate="popupBonus111Prize") 77 FS
-                    .popup__prize
-                        picture
-                            source(srcset="./img/popups/fs99/prize-mob.png" media="(max-width: 600px) and (orientation: portrait)")
-                            img(src="./img/popups/fs99/prize-desc.png" alt="sam favbet")
-                    .popup__decor-left
-                    .popup__decor-right
+                    .popup__title(data-translate="popupBonus111Prize") 103 ₴ <br> bonus “Bet Insurance”
+                    .popup__prize-bottom(data-translate="popupBonusPrizeLink")._bonus Go to #[a(href="#") My Account] and activate your bonus within 3 days
+                    a(href="/personal-office/bonuses/casino/" data-translate="popupTakeBonusBtn").popup__btn
                 .popup__prize-bottom(data-translate="popupCallback") Our team will contact you to clarify <br> all the details.
                 .popup__bottom._incomplete
                     .popup__text(data-translate="popupRemindSpinTitle") Also, don’t forget <br> about the challenge
