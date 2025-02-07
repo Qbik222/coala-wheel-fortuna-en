@@ -1228,7 +1228,7 @@ body
       height: 38px
       background: url("https://fav-prom.com/html/wheel-ua/img/popups/btn-close.png") no-repeat 0 0/contain
       position: absolute
-      top: 30px
+      top: -60px
       right: -10px
       cursor: pointer
       z-index: 5
@@ -1276,7 +1276,7 @@ body
     &__title
       transform: scale(1.25) rotate(-3deg)
       opacity: 0
-      font-size: 42px
+      font-size: 41px
       color: rgba($light-yellow, .52)
       text-align: center
       text-shadow: 1px 1px 0px #AD7402, 0px 0px 24px rgba(255, 229, 0, 0.40), 0px 0px 5px rgba(255, 229, 0, 0.60)
@@ -1758,7 +1758,9 @@ body
             &::before
               background: url("https://fav-prom.com/html/wheel-ua/img/popups/account-icon.png") no-repeat 0 0/contain
         &__main
-          height: 460px
+          height: 440px
+          &._done
+            height: 480px
         &__bottom._done
           .popup__btn
             display: none
@@ -1797,41 +1799,205 @@ body
       .popup
         &__buble._fs99, &__item._fs99
           display: block
-        &__prize
-          max-width: 370px
-          margin: -80px auto 0 auto
-          &-bottom
-            margin-top: -120px
+        &__buble._bonus
+          display: flex
+          align-items: center
+          justify-content: center
+          transform: rotate(-5.474deg)
+        &__btn-wrap
+          display: none
         &__buble
-          padding: 20px 20px 30px 25px
-        &__title
-          margin-top: -25px
-        &__main
-          height: 595px
+          padding-top: 0
+          margin-left: -40px
+          //&-text
+          //  font-size: 30px
+          //  line-height: 41px
+          //  max-width: 340px
         &__pers
-          max-width: 290px
-          margin: -30px auto -65px 100px
+          max-width: 410px
+          margin: -70px auto -75px 70px
           ._fs99
             display: block
+        &__title
+          line-height: 42px
+          margin-top: 15px
+          font-size: 39px
+        &__prize
+          &-bottom
+            display: none
+          &-bottom._bonus
+            display: block
+          &-bottom
+            margin-top: 25px
+            a
+              color: inherit
+              font-family: inherit
+              font-size: inherit
+              text-decoration: underline
+              &:hover
+                cursor: pointer
+                text-decoration: none
+            &::before
+              background: url("https://fav-prom.com/html/wheel-ua/img/popups/account-icon.png") no-repeat 0 0/contain
+        &__main
+          height: 440px
+          &._done
+            height: 480px
+        &__bottom._done
+          .popup__btn
+            display: none
+        &__btn
+          width: 185px
+          height: 62px
+          z-index: 1
+          background: url("https://fav-prom.com/html/wheel-ua/img/popups/btn-done.png") no-repeat 0 0/cover
+          background-size: 100% 100%
+          display: flex
+          align-items: center
+          justify-content: center
+          transition: background .4s ease-in-out
+          color: $white
+          font-size: 16px
+          font-family: $font-suisse-intl-bold
+          text-shadow: 3.75px 5.25px 3px rgba(0, 0, 0, 0.25), 1.5px 1.5px 0.75px #108662
+          position: relative
+          margin-top: 15px
+          &::before
+            content: ""
+            display: block
+            width: 90%
+            height: 90%
+            position: absolute
+            box-shadow: 0px 0px 10px 0px #76FFD5
+          &:hover
+            background: url("https://fav-prom.com/html/wheel-ua/img/popups/btn-done-hover.png") no-repeat 0 0/cover
+            background-size: 100% 100%
+            cursor: pointer
+        &__item._fs99
+          display: flex
+          flex-direction: column
+          align-items: center
     &._fs77
       .popup
-        &__buble._fs77, &__item._fs77
+        &__buble._bonus, &__item._fs77
           display: block
-        &__prize
-          max-width: 370px
-          margin: -90px auto 0 auto
-          &-bottom
-            margin-top: -120px
+        &__buble._bonus
+          display: flex
+          align-items: center
+          justify-content: center
+          transform: rotate(-5.474deg)
+        &__btn-wrap
+          display: none
         &__buble
-          padding: 20px 20px 30px 25px
-        &__title
-          margin-top: -15px
-          font-size: 32px
+          padding-top: 0
+          margin-left: -40px
+          //&-text
+          //  font-size: 30px
+          //  line-height: 41px
+          //  max-width: 340px
         &__pers
-          max-width: 290px
-          margin: -30px auto -65px 100px
+          max-width: 410px
+          margin: -70px auto -75px 70px
           ._fs77
             display: block
+        &__title
+          line-height: 42px
+          margin-top: 15px
+          font-size: 35px
+        &__prize
+          &-bottom
+            display: none
+          &-bottom._bonus
+            display: block
+          &-bottom
+            margin-top: 25px
+            a
+              color: inherit
+              font-family: inherit
+              font-size: inherit
+              text-decoration: underline
+              &:hover
+                cursor: pointer
+                text-decoration: none
+            &::before
+              background: url("https://fav-prom.com/html/wheel-ua/img/popups/account-icon.png") no-repeat 0 0/contain
+        &__main
+          height: 440px
+          &._done
+            height: 480px
+        &__bottom._done
+          .popup__btn
+            display: none
+        &__btn
+          width: 185px
+          height: 62px
+          z-index: 1
+          background: url("https://fav-prom.com/html/wheel-ua/img/popups/btn-done.png") no-repeat 0 0/cover
+          background-size: 100% 100%
+          display: flex
+          align-items: center
+          justify-content: center
+          transition: background .4s ease-in-out
+          color: $white
+          font-size: 16px
+          font-family: $font-suisse-intl-bold
+          text-shadow: 3.75px 5.25px 3px rgba(0, 0, 0, 0.25), 1.5px 1.5px 0.75px #108662
+          position: relative
+          margin-top: 15px
+          &::before
+            content: ""
+            display: block
+            width: 90%
+            height: 90%
+            position: absolute
+            box-shadow: 0px 0px 10px 0px #76FFD5
+          &:hover
+            background: url("https://fav-prom.com/html/wheel-ua/img/popups/btn-done-hover.png") no-repeat 0 0/cover
+            background-size: 100% 100%
+            cursor: pointer
+        &__item._fs77
+          display: flex
+          flex-direction: column
+          align-items: center
+    //&._fs99
+    //  .popup
+    //    &__buble._fs99, &__item._fs99
+    //      display: block
+    //    &__prize
+    //      max-width: 370px
+    //      margin: -80px auto 0 auto
+    //      &-bottom
+    //        margin-top: -120px
+    //    &__buble
+    //      padding: 20px 20px 30px 25px
+    //    &__title
+    //      margin-top: -25px
+    //    &__main
+    //      height: 595px
+    //    &__pers
+    //      max-width: 290px
+    //      margin: -30px auto -65px 100px
+    //      ._fs99
+    //        display: block
+    //&._fs77
+    //  .popup
+    //    &__buble._fs77, &__item._fs77
+    //      display: block
+    //    &__prize
+    //      max-width: 370px
+    //      margin: -90px auto 0 auto
+    //      &-bottom
+    //        margin-top: -120px
+    //    &__buble
+    //      padding: 20px 20px 30px 25px
+    //    &__title
+    //      margin-top: -15px
+    //      font-size: 32px
+    //    &__pers
+    //      max-width: 290px
+    //      margin: -30px auto -65px 100px
+    //      ._fs77
+    //        display: block
     &._nothing
       .popup
         &__buble._nothing
@@ -1897,7 +2063,9 @@ body
             &::before
               background: url("https://fav-prom.com/html/wheel-ua/img/popups/account-icon.png") no-repeat 0 0/contain
         &__main
-          height: 460px
+          height: 410px
+          &._done
+             height: 450px
         &__bottom._done
           .popup__btn
             display: none
@@ -2380,7 +2548,17 @@ body
     &._bonus
       .popup
         &__main
-          height: 490px
+          height: 440px
+          &._done
+            height: 480px
+    &._bonus111
+      .popup
+        &__main
+          height: 410px
+    &._fs77
+      .popup
+        &__title
+          font-size: 32px
 
 @media screen and (max-width: 600px)
   .en
