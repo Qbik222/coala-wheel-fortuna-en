@@ -22,8 +22,6 @@ $font-lobster-reg: Lobster, sans-serif
   top: 0
   left: 0
 
-
-
 .menu-test
   display: flex
   flex-direction: column
@@ -271,7 +269,7 @@ body
             left: 92px
             width: 74%
             height: 74.5%
-            @media screen and (max-width: 870px)
+            @media screen and (max-width: 880px)
               top: 70px
               left: 71px
         &__arrow
@@ -386,7 +384,6 @@ body
     position: absolute
     top: 15%
     left: 16%
-    //transform: rotate(-17deg)
     z-index: 6
     animation: showArrow 1.8s ease-in-out, moveArrow 2s ease-in-out infinite
     transition: opacity ease-in-out
@@ -881,7 +878,6 @@ body
       top: 3px
       left: 5px
       height: 17px
-      //width: 50%
       min-width: 3%
       max-width: 97%
       border-radius: 10px
@@ -1100,8 +1096,6 @@ body
           border: 1px solid $magenta
           &::before
             background: url("https://fav-prom.com/html/wheel-ro/img/drop-arrow-magenta.png") no-repeat 0 0/contain
-
-
   &__header
     background-color: $blue
     border: 1px solid #313FFF
@@ -1133,7 +1127,6 @@ body
       background: url("https://fav-prom.com/html/wheel-ua/img/drop-arrow.png") no-repeat 0 0/contain
   &__content
     display: none
-    //padding: 35px 20px 15px 20px
     padding: 24px 20px
     border: 2px solid #313FFF
     background-color: $blue
@@ -1399,10 +1392,8 @@ body
         opacity: 1
       &::before
         animation: topleftArrowAnim 2s  cubic-bezier(0.2, 1, 0.7, 1) infinite
-        //animation-delay: .3s
       &::after
         animation: bottomLeftArrowAnim 2s cubic-bezier(0.2, 1, 0.7, 1) infinite
-        //animation-delay: .3s
     .popupRightArrAnim
       &::before
         right: 41px
@@ -1414,7 +1405,6 @@ body
         animation: topRightArrowAnim 2s cubic-bezier(0.2, 1, 0.7, 1) infinite
     &__bottom
       display: none
-      //display: flex
       flex-direction: column
       align-items: center
       position: relative
@@ -1710,7 +1700,6 @@ body
           margin-top: -35px
         &__prize
           max-width: 360px
-          //margin-top: -75px
           margin: -75px auto 0 auto
         &__item._ecoflow
           display: block
@@ -1809,10 +1798,6 @@ body
         &__buble
           padding-top: 0
           margin-left: -40px
-          //&-text
-          //  font-size: 30px
-          //  line-height: 41px
-          //  max-width: 340px
         &__pers
           max-width: 410px
           margin: -70px auto -75px 70px
@@ -1891,10 +1876,6 @@ body
         &__buble
           padding-top: 0
           margin-left: -40px
-          //&-text
-          //  font-size: 30px
-          //  line-height: 41px
-          //  max-width: 340px
         &__pers
           max-width: 410px
           margin: -70px auto -75px 70px
@@ -1959,45 +1940,6 @@ body
           display: flex
           flex-direction: column
           align-items: center
-    //&._fs99
-    //  .popup
-    //    &__buble._fs99, &__item._fs99
-    //      display: block
-    //    &__prize
-    //      max-width: 370px
-    //      margin: -80px auto 0 auto
-    //      &-bottom
-    //        margin-top: -120px
-    //    &__buble
-    //      padding: 20px 20px 30px 25px
-    //    &__title
-    //      margin-top: -25px
-    //    &__main
-    //      height: 595px
-    //    &__pers
-    //      max-width: 290px
-    //      margin: -30px auto -65px 100px
-    //      ._fs99
-    //        display: block
-    //&._fs77
-    //  .popup
-    //    &__buble._fs77, &__item._fs77
-    //      display: block
-    //    &__prize
-    //      max-width: 370px
-    //      margin: -90px auto 0 auto
-    //      &-bottom
-    //        margin-top: -120px
-    //    &__buble
-    //      padding: 20px 20px 30px 25px
-    //    &__title
-    //      margin-top: -15px
-    //      font-size: 32px
-    //    &__pers
-    //      max-width: 290px
-    //      margin: -30px auto -65px 100px
-    //      ._fs77
-    //        display: block
     &._nothing
       .popup
         &__buble._nothing
@@ -2529,8 +2471,6 @@ body
       .popup__text
         br
           display: none
-        //@media screen and (max-width: 600px)
-        //  display: block
     &._iphone, &._ecoflow
       .popup
         &__item
